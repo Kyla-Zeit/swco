@@ -71,4 +71,12 @@
     "tw-animate-css": "1.3.3",
     "typescript": "^5"
   }
+
+  {
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",                   // writes to ./out
+    "deploy": "rm -rf docs && next build && mkdir -p docs && xcopy out docs /E /I /Y 2>nul || cp -r out/* docs && echo > docs/.nojekyll"
+  }
+}
 }
