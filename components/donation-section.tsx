@@ -1,38 +1,38 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { Checkbox } from "@/components/ui/checkbox"
-import { Heart, Shield, CreditCard, Droplets } from "lucide-react"
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Heart, Shield, CreditCard, Droplets } from "lucide-react";
 
 const donationAmounts = [
   { amount: 25, impact: "Provides clean water for 1 person for 2 weeks" },
   { amount: 50, impact: "Provides clean water for a family for 1 month" },
   { amount: 100, impact: "Supports well maintenance for 3 months" },
   { amount: 250, impact: "Funds water system installation for a school" },
-]
+];
 
 export function DonationSection() {
-  const [selectedAmount, setSelectedAmount] = useState("50")
-  const [customAmount, setCustomAmount] = useState("")
-  const [isMonthly, setIsMonthly] = useState(false)
+  const [selectedAmount, setSelectedAmount] = useState("50");
+  const [customAmount, setCustomAmount] = useState("");
+  const [isMonthly, setIsMonthly] = useState(false);
   const [donorInfo, setDonorInfo] = useState({
     firstName: "",
     lastName: "",
     email: "",
     phone: "",
-  })
+  });
 
   const handleDonate = () => {
     // In a real implementation, this would integrate with a payment processor
-    alert("Thank you for your donation! This would redirect to a secure payment processor.")
-  }
+    alert("Thank you for your donation! This would redirect to a secure payment processor.");
+  };
 
-  const currentAmount = selectedAmount === "custom" ? customAmount : selectedAmount
+  const currentAmount = selectedAmount === "custom" ? customAmount : selectedAmount;
 
   return (
     <section id="donate" className="py-20 bg-primary text-primary-foreground">
@@ -58,7 +58,11 @@ export function DonationSection() {
               <CardContent className="space-y-6">
                 {/* Donation Type */}
                 <div className="flex items-center justify-center space-x-4 p-4 bg-secondary rounded-lg">
-                  <Checkbox id="monthly" checked={isMonthly} onCheckedChange={setIsMonthly} />
+                  <Checkbox
+                    id="monthly"
+                    checked={isMonthly}
+                    onCheckedChange={(checked) => setIsMonthly(checked === true)}
+                  />
                   <Label htmlFor="monthly" className="text-sm font-medium">
                     Make this a monthly donation
                   </Label>
@@ -100,8 +104,8 @@ export function DonationSection() {
                           placeholder="Enter amount"
                           value={customAmount}
                           onChange={(e) => {
-                            setCustomAmount(e.target.value)
-                            setSelectedAmount("custom")
+                            setCustomAmount(e.target.value);
+                            setSelectedAmount("custom");
                           }}
                           className="flex-1"
                           min="1"
@@ -240,5 +244,5 @@ export function DonationSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
