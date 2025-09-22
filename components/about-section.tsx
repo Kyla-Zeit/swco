@@ -72,7 +72,7 @@ export function AboutSection() {
               size="sm"
               className="btn-caps cursor-pointer bg-primary hover:bg-primary/90 text-primary-foreground font-semibold"
             >
-              <Link href="/journey">Read the full story</Link>
+              <Link href="/journey">Read The Full Story</Link>
             </Button>
 
             <Button asChild variant="outline" size="sm" className="btn-caps cursor-pointer">
