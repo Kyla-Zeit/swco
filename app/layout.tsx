@@ -1,7 +1,8 @@
+// app/layout.tsx
+import "./globals.css";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { Work_Sans, Open_Sans } from "next/font/google";
-import "./globals.css";
 
 const workSans = Work_Sans({
   subsets: ["latin"],
