@@ -35,11 +35,10 @@ export function AboutSection() {
             <li>• Open access and transparent impact</li>
           </ul>
 
-          {/* Link to the long-form story */}
           <div className="mt-4">
             <Button
               asChild
-              className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold cursor-pointer"
+              className="btn-caps bg-primary hover:bg-primary/90 text-primary-foreground font-semibold cursor-pointer"
             >
               <Link href="/journey">Read the full story</Link>
             </Button>
@@ -54,7 +53,7 @@ export function AboutSection() {
             Donations fund free admission, artist grants, and digitization.
           </p>
           <Button
-            className="mt-4 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold cursor-pointer"
+            className="btn-caps mt-4 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold cursor-pointer"
             onClick={() =>
               document.getElementById("donate")?.scrollIntoView({ behavior: "smooth" })
             }
