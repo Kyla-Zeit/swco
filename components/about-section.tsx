@@ -11,9 +11,6 @@ export function AboutSection() {
       {/* Heading + short intro */}
       <div className="text-center max-w-3xl mx-auto">
         <h2 className="text-3xl sm:text-4xl font-bold mb-4">About Samawada</h2>
-                <p className="btn-caps text-xs tracking-[0.14em] text-primary mb-2">
-          From displacement to empowerment
-        </p>
         <p className="text-muted-foreground">
           We partner with communities to expand clean water access and the opportunity it
           unlocks — healthier families, stronger schools, and resilient local economies.
