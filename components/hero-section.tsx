@@ -34,7 +34,7 @@ export function HeroSection() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button
               size="lg"
-              className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold text-lg px-8 py-4 group"
+              className="btn-caps cursor-pointer bg-primary hover:bg-primary/90 text-primary-foreground font-semibold text-lg px-8 py-4 group"
               onClick={() => document.getElementById("donate")?.scrollIntoView({ behavior: "smooth" })}
             >
               Donate Now
@@ -44,7 +44,7 @@ export function HeroSection() {
             <Button
               variant="outline"
               size="lg"
-              className="border-white text-white hover:bg-white hover:text-black font-semibold text-lg px-8 py-4 group bg-transparent"
+              className="btn-caps cursor-pointer border-white text-white hover:bg-white hover:text-black font-semibold text-lg px-8 py-4 group bg-transparent"
               onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })}
             >
               <Play className="mr-2 w-5 h-5" />
