@@ -134,11 +134,29 @@
     opacity: 1;
     transform: translateY(0);
   }
-}animate-fade-in-up {
-  animation: fadeInUp 0.6s ease-out;
 }
 
-/* Smooth scrolling */
+/* Helper class to use the animation */
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out both; /* 'both' keeps final state */
+  will-change: transform, opacity;
+}
+
+/* Optional: easy staggering */
+.anim-delay-150 { animation-delay: 150ms; }
+.anim-delay-300 { animation-delay: 300ms; }
+.anim-delay-500 { animation-delay: 500ms; }
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in-up {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Smooth scrolling for in-page anchors (#foo) */
 html {
   scroll-behavior: smooth;
 }
@@ -154,4 +172,13 @@ html {
 [id] { scroll-margin-top: 84px; }          /* mobile (h-16 ≈ 64px + buffer) */
 @media (min-width: 1024px){
   [id] { scroll-margin-top: 96px; }        /* lg header is ~76px + buffer */
+}
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .hero-fade-up,
+  .hero-fade-up.slow {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
