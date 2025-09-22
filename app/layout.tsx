@@ -4,6 +4,10 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { Work_Sans, Open_Sans } from "next/font/google";
 
+import { Header } from "@/components/header";
+import { Footer } from "@/components/footer";
+import { ThemeProvider } from "@/components/theme-provider";
+
 const workSans = Work_Sans({
   subsets: ["latin"],
   variable: "--font-work-sans",
@@ -32,7 +36,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body className={`${workSans.variable} ${openSans.variable} antialiased`}>
-        {children}
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          <Header />
+          {/* header is fixed; add top padding so content isn't hidden behind it */}
+          <main className="pt-16 lg:pt-[76px]">{children}</main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );
