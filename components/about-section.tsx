@@ -16,10 +16,11 @@ export function AboutSection() {
 
         {/* Homepage summary of The Journey */}
         <p className="text-muted-foreground">
-          Born in Somalia and displaced by war, our founder rebuilt life in Canada but never forgot those left behind.
-          A 2015 return revealed drought, gender inequality, and fragile livelihoods alongside extraordinary resilience.
-          In 2018 she launched <span className="font-semibold">Samawada</span> — “carrying something good” — to partner
-          with communities on clean water, dignity, and opportunity so families can thrive.
+          Our story begins with displacement. After fleeing Somalia in the 1990s and returning in 2015,
+          our founder saw the toll of conflict, climate shocks, and gender inequality—and the resolve of
+          women leading change. In 2018 she launched <span className="font-semibold">Samawada</span>, meaning
+          <em> “carrying something good”</em>, to partner with communities on clean water, opportunity, and a
+          future where families can thrive.
         </p>
       </div>
 
