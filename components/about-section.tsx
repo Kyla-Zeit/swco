@@ -1,19 +1,21 @@
 "use client";
 
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 export function AboutSection() {
   return (
     <section id="about" className="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
-      {/* Centered heading + subtext */}
+      {/* Centered heading + intro */}
       <div className="text-center">
         <p className="text-xs font-semibold uppercase tracking-[0.14em] text-primary mb-2">
           Who we are
         </p>
         <h2 className="text-3xl sm:text-4xl font-bold mb-4">About Samawada</h2>
         <p className="text-muted-foreground max-w-2xl mx-auto">
-          At Samawada, we are committed to providing access to clean water for communities in need, improving health, reducing poverty, and fostering sustainable development. Through innovative solutions and community-driven efforts, we empower individuals to thrive, while ensuring that everyone has access to this vital resource.
-
+          Samawada connects communities to art, history, and each other through exhibitions,
+          education, and open digital access. We work with artists, historians, and local
+          partners to surface stories that matter.
         </p>
       </div>
 
@@ -32,6 +34,15 @@ export function AboutSection() {
             <li>• Artist support and fair credit</li>
             <li>• Open access and transparent impact</li>
           </ul>
+
+          {/* Link to the long-form story */}
+          <div className="mt-4">
+            <Link href="/journey">
+              <Button variant="outline" className="font-semibold">
+                Read the full story
+              </Button>
+            </Link>
+          </div>
         </div>
 
         {/* What we do */}
