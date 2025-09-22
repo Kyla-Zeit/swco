@@ -1,4 +1,3 @@
-// components/header.tsx
 "use client";
 
 import { useState, useCallback } from "react";
@@ -62,7 +61,7 @@ export function Header() {
           <div className="hidden md:flex">
             <Button
               size="sm"
-              className="h-11 px-6 text-[1rem] bg-primary hover:bg-primary/90 text-primary-foreground font-semibold"
+              className="btn-caps h-11 px-6 text-[1rem] bg-primary hover:bg-primary/90 text-primary-foreground font-semibold cursor-pointer"
               onClick={() =>
                 document.getElementById("donate")?.scrollIntoView({ behavior: "smooth" })
               }
@@ -92,7 +91,7 @@ export function Header() {
               <Link href="/#contact" className={navLink} onClick={() => setIsMenuOpen(false)}>Contact</Link>
               <Button
                 size="sm"
-                className="mt-2 w-fit h-11 px-6 text-[1rem] bg-primary hover:bg-primary/90 text-primary-foreground font-semibold"
+                className="btn-caps mt-2 w-fit h-11 px-6 text-[1rem] bg-primary hover:bg-primary/90 text-primary-foreground font-semibold cursor-pointer"
                 onClick={() => {
                   setIsMenuOpen(false);
                   document.getElementById("donate")?.scrollIntoView({ behavior: "smooth" });
