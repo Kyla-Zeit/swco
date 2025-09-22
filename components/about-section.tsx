@@ -12,9 +12,8 @@ export function AboutSection() {
         </p>
         <h2 className="text-3xl sm:text-4xl font-bold mb-4">About Samawada</h2>
         <p className="text-muted-foreground max-w-2xl mx-auto">
-          Samawada connects communities to art, history, and each other through exhibitions,
-          education, and open digital access. We work with artists, historians, and local
-          partners to surface stories that matter.
+          At Samawada, we are committed to providing access to clean water for communities in need, improving health, reducing poverty, and fostering sustainable development. Through innovative solutions and community-driven efforts, we empower individuals to thrive, while ensuring that everyone has access to this vital resource.
+
         </p>
       </div>
 
