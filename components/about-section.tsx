@@ -23,22 +23,22 @@ export function AboutSection() {
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           <MissionCard
             icon={<Wrench className="h-5 w-5" />}
-            title="We Build"
+            title="Build"
             text="Boreholes, wells, distribution points and treatment — designed for local conditions and maintained long-term."
           />
           <MissionCard
             icon={<Droplets className="h-5 w-5" />}
-            title="We Empower"
+            title="Empower"
             text="Train well committees, fund maintenance and strengthen community-led management for durability."
           />
           <MissionCard
             icon={<GraduationCap className="h-5 w-5" />}
-            title="We Educate"
+            title="Educate"
             text="Hygiene workshops and water stewardship that improve health outcomes for families and schools."
           />
           <MissionCard
             icon={<Sprout className="h-5 w-5" />}
-            title="We Nourish"
+            title="Nourish"
             text="Clean water frees time for learning and livelihoods, boosting household income and local economies."
           />
         </div>
