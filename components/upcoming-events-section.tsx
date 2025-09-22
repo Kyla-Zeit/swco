@@ -1,5 +1,8 @@
 "use client";
 
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+
 export function UpcomingEventsSection() {
   return (
     <section id="events" className="py-20 bg-muted">
@@ -11,12 +14,10 @@ export function UpcomingEventsSection() {
           </p>
         </div>
 
-        {/* Highlights grid */}
+        {/* Highlights grid (swap the src URLs for your real embeds) */}
         <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Card 1 */}
           <div className="rounded-xl border border-border bg-card shadow-sm overflow-hidden">
             <div className="aspect-[9/16]">
-              {/* Replace the src values with your real embeds */}
               <iframe
                 className="w-full h-full"
                 src="https://www.instagram.com/p/XXXXXXXXX/embed"
@@ -26,7 +27,6 @@ export function UpcomingEventsSection() {
             </div>
           </div>
 
-          {/* Card 2 */}
           <div className="rounded-xl border border-border bg-card shadow-sm overflow-hidden">
             <div className="aspect-[9/16]">
               <iframe
@@ -38,7 +38,6 @@ export function UpcomingEventsSection() {
             </div>
           </div>
 
-          {/* Card 3 */}
           <div className="rounded-xl border border-border bg-card shadow-sm overflow-hidden">
             <div className="aspect-[9/16]">
               <iframe
@@ -51,16 +50,20 @@ export function UpcomingEventsSection() {
           </div>
         </div>
 
-        {/* Optional CTA */}
+        {/* CTA as a real button */}
         <div className="text-center mt-8">
-          <a
-            href="https://www.instagram.com/your-handle/"
-            target="_blank"
-            rel="noreferrer"
-            className="text-primary font-semibold hover:underline"
+          <Button
+            asChild
+            className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold cursor-pointer"
           >
-            Follow us for event updates →
-          </a>
+            <Link
+              href="https://www.instagram.com/your-handle/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Follow us for event updates
+            </Link>
+          </Button>
         </div>
       </div>
     </section>

@@ -13,9 +13,9 @@ export function AboutSection() {
         </p>
         <h2 className="text-3xl sm:text-4xl font-bold mb-4">About Samawada</h2>
         <p className="text-muted-foreground max-w-2xl mx-auto">
-          Samawada connects communities to art, history, and each other through exhibitions,
-          education, and open digital access. We work with artists, historians, and local
-          partners to surface stories that matter.
+          Samawada connects communities to art, history, and each other through
+          exhibitions, education, and open digital access. We work with artists,
+          historians, and local partners to surface stories that matter.
         </p>
       </div>
 
@@ -37,11 +37,12 @@ export function AboutSection() {
 
           {/* Link to the long-form story */}
           <div className="mt-4">
-            <Link href="/journey">
-              <Button variant="outline" className="font-semibold">
-                Read the full story
-              </Button>
-            </Link>
+            <Button
+              asChild
+              className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold cursor-pointer"
+            >
+              <Link href="/journey">Read the full story</Link>
+            </Button>
           </div>
         </div>
 
@@ -53,7 +54,7 @@ export function AboutSection() {
             Donations fund free admission, artist grants, and digitization.
           </p>
           <Button
-            className="mt-4 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold"
+            className="mt-4 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold cursor-pointer"
             onClick={() =>
               document.getElementById("donate")?.scrollIntoView({ behavior: "smooth" })
             }
