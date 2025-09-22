@@ -13,14 +13,9 @@ export function AboutSection() {
           From displacement to empowerment
         </p>
         <h2 className="text-3xl sm:text-4xl font-bold mb-4">About Samawada</h2>
-
-        {/* Homepage summary of The Journey */}
         <p className="text-muted-foreground">
-          Our story begins with displacement. After fleeing Somalia in the 1990s and returning in 2015,
-          our founder saw the toll of conflict, climate shocks, and gender inequality—and the resolve of
-          women leading change. In 2018 she launched <span className="font-semibold">Samawada</span>, meaning
-          <em> “carrying something good”</em>, to partner with communities on clean water, opportunity, and a
-          future where families can thrive.
+          We partner with communities to expand clean water access and the opportunity it unlocks —
+          healthier families, stronger schools, and resilient local economies.
         </p>
       </div>
 
@@ -29,14 +24,19 @@ export function AboutSection() {
         {/* Our story */}
         <div className="rounded-lg border border-border bg-card p-6">
           <h3 className="text-xl font-semibold mb-3">Our story</h3>
+
           <p className="text-muted-foreground">
-            Started as a grassroots effort, we’ve grown into a nonprofit platform that pairs community archives with
-            traveling programs and digital tools. The goal hasn’t changed: access without barriers.
+            Born in Somalia and displaced by war, our founder rebuilt life in Canada but never forgot those left behind.
+            A 2015 return revealed drought, gender inequality, and fragile livelihoods alongside extraordinary
+            resilience. In 2018 she created <span className="font-semibold">Samawada</span> — “carrying something
+            good” — to partner with communities on clean water, dignity, and long-term opportunity so families can
+            thrive.
           </p>
+
           <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-            <li>• Community-first collaboration</li>
-            <li>• Artist support and fair credit</li>
-            <li>• Open access and transparent impact</li>
+            <li>• Community-led, women-centered solutions</li>
+            <li>• Clean water access with ongoing maintenance</li>
+            <li>• Climate-resilient projects and transparent impact</li>
           </ul>
 
           <div className="mt-5">
@@ -54,8 +54,8 @@ export function AboutSection() {
         <div className="rounded-lg border border-border bg-card p-6">
           <h3 className="text-xl font-semibold mb-3">What we do</h3>
           <p className="text-muted-foreground">
-            Exhibitions for any space, free learning resources, and a living digital archive. Donations fund free
-            admission, artist grants, and digitization.
+            We work with local leaders to deliver and maintain clean water systems — deep wells, distribution points,
+            and training — improving health, education, and livelihoods across East African communities.
           </p>
 
           <div className="mt-5">
