@@ -75,18 +75,13 @@ export function AboutSection() {
         </div>
 
         {/* What we do */}
-        <div className="rounded-lg border border-border bg-card p-6 mt-3 md:mt-4 lg:mt-5">
+        <div className="rounded-lg border border-border bg-card p-6">
           <h3 className="text-xl font-semibold mb-3">What we do</h3>
-<p className="text-muted-foreground">
-  Samawada pairs science, training, and local leadership to keep safe water flowing.
-  We test and secure clean sources, build and maintain wells and distribution points,
-  and strengthen sanitation systems to stop water-borne disease. We restore degraded
-  land through community tree planting—using rain-catching swales and fruit trees
-  that boost food security and income. We teach practical hygiene so families can store
-  and use water safely. From early research to hands-on training and long-term upkeep,
-  our approach equips communities—especially women and youth—to protect health, grow
-  livelihoods, and steward their environment.
-</p>
+          <p className="text-muted-foreground">
+            We work with local leaders to deliver and maintain clean water systems — deep wells,
+            distribution points and training — improving health, education and livelihoods across
+            East African communities.
+          </p>
 
           <div className="mt-5">
             <Button
