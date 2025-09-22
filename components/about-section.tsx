@@ -77,26 +77,30 @@ export function AboutSection() {
         {/* What we do */}
         <div className="rounded-lg border border-border bg-card p-6 mt-3 md:mt-4 lg:mt-5">
           <h3 className="text-xl font-semibold mb-3">What we do</h3>
-<p className="text-muted-foreground">
-  Samawada pairs science, training, and local leadership to keep safe water flowing.
-  We test and secure clean sources, build and maintain wells and distribution points,
-  and strengthen sanitation systems to stop water-borne disease. We restore degraded
-  land through community tree planting—using rain-catching swales and fruit trees
-  that boost food security and income. We teach practical hygiene so families can store
-  and use water safely. From early research to hands-on training and long-term upkeep,
-  our approach equips communities—especially women and youth—to protect health, grow
-  livelihoods, and steward their environment.
-</p>
+          <p className="text-muted-foreground">
+            Samawada pairs science, training, and local leadership to keep safe water flowing.
+            We test and secure clean sources, build and maintain wells and distribution points,
+            and strengthen sanitation systems to stop water-borne disease. We restore degraded
+            land through community tree planting—using rain-catching swales and fruit trees
+            that boost food security and income. We teach practical hygiene so families can store
+            and use water safely. From early research to hands-on training and long-term upkeep,
+            our approach equips communities—especially women and youth—to protect health, grow
+            livelihoods, and steward their environment.
+          </p>
 
           <div className="mt-5">
             <Button
+              asChild
               size="sm"
               className="btn-caps cursor-pointer bg-primary hover:bg-primary/90 text-primary-foreground font-semibold"
-              onClick={() =>
-                document.getElementById("donate")?.scrollIntoView({ behavior: "smooth" })
-              }
             >
-              Donate
+              <Link
+                href="https://samawada.org/what-we-do/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                See Our Approach
+              </Link>
             </Button>
           </div>
         </div>
@@ -117,13 +121,17 @@ function MissionCard({
   text: string;
 }) {
   return (
-    <div className="group relative overflow-hidden rounded-2xl border border-border bg-card p-6 shadow-sm transition
-                    hover:-translate-y-1 hover:shadow-lg">
+    <div
+      className="group relative overflow-hidden rounded-2xl border border-border bg-card p-6 shadow-sm transition
+                 hover:-translate-y-1 hover:shadow-lg"
+    >
       {/* accent stripe */}
       <div className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-primary/80 via-emerald-400/60 to-primary/80" />
       <div className="flex items-start gap-3">
-        <div className="rounded-xl bg-primary/10 p-2 ring-1 ring-primary/20 transition
-                        group-hover:bg-primary group-hover:text-primary-foreground group-hover:ring-primary/30">
+        <div
+          className="rounded-xl bg-primary/10 p-2 ring-1 ring-primary/20 transition
+                     group-hover:bg-primary group-hover:text-primary-foreground group-hover:ring-primary/30"
+        >
           {icon}
         </div>
         <h4 className="text-lg font-semibold">{title}</h4>
