@@ -75,7 +75,7 @@ export function AboutSection() {
         </div>
 
         {/* What we do */}
-        <div className="rounded-lg border border-border bg-card p-6">
+        <div className="rounded-lg border border-border bg-card p-6 mt-3 md:mt-4 lg:mt-5">
           <h3 className="text-xl font-semibold mb-3">What we do</h3>
 <p className="text-muted-foreground">
   Samawada pairs science, training, and local leadership to keep safe water flowing.
