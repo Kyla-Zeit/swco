@@ -71,10 +71,6 @@ export function AboutSection() {
             >
               <Link href="/journey">Read The Full Story</Link>
             </Button>
-
-            <Button asChild variant="outline" size="sm" className="btn-caps cursor-pointer">
-              <Link href="/#mission">How we work</Link>
-            </Button>
           </div>
         </div>
 
