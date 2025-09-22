@@ -9,9 +9,7 @@ export function HeroSection() {
       {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `url('/east-african-community-gathering-around-clean-wate.jpg')`,
-        }}
+    style={{ backgroundImage: `url('/swco/hero-image.jpg')` }}
       >
         <div className="absolute inset-0 bg-black/50" />
       </div>
