@@ -53,8 +53,8 @@ export function Header() {
           <nav className="hidden md:flex items-center gap-12 lg:gap-16 xl:gap-20">
             <Link href="/#impact" className={navLink}>Impact</Link>
             <Link href="/#about" className={navLink}>About</Link>
-            <Link href="/#events" className={navLink}>Events</Link>
             <Link href="/#projects" className={navLink}>Projects</Link>
+            <Link href="/#events" className={navLink}>Events</Link>
             <Link href="/#contact" className={navLink}>Contact</Link>
           </nav>
 
