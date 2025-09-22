@@ -1,18 +1,23 @@
-"use client"
+"use client";
 
-import { Button } from "@/components/ui/button"
-import { ArrowRight, Play } from "lucide-react"
+import Image from "next/image";
+import hero from "@/public/hero-image.jpg";
+import { Button } from "@/components/ui/button";
+import { ArrowRight, Play } from "lucide-react";
 
 export function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-    style={{ backgroundImage: `url('/swco/hero-image.jpg')` }}
-      >
-        <div className="absolute inset-0 bg-black/50" />
-      </div>
+      <Image
+        src={hero}
+        alt=""
+        fill
+        priority
+        sizes="100vw"
+        className="absolute inset-0 object-cover object-center"
+      />
+      <div className="absolute inset-0 bg-black/50" />
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
@@ -23,8 +28,7 @@ export function HeroSection() {
           </h1>
 
           <p className="text-lg sm:text-xl lg:text-2xl mb-8 text-white/90 max-w-2xl mx-auto text-pretty">
-            Providing access to clean water to underserved communities in East Africa, transforming lives one drop at a
-            time.
+            Providing access to clean water to underserved communities in East Africa, transforming lives one drop at a time.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -73,5 +77,5 @@ export function HeroSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
