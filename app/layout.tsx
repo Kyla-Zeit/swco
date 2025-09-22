@@ -1,5 +1,4 @@
-// app/layout.tsx
-import "./globals.css";
+import "./globals.css"; // ← DO NOT comment this out
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { Work_Sans, Open_Sans } from "next/font/google";
@@ -38,7 +37,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body className={`${workSans.variable} ${openSans.variable} antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <Header />
-          {/* header is fixed; add top padding so content isn't hidden behind it */}
+          {/* header is fixed; pad the top so content isn't hidden */}
           <main className="pt-16 lg:pt-[76px]">{children}</main>
           <Footer />
         </ThemeProvider>
