@@ -7,26 +7,66 @@ import { Button } from "@/components/ui/button";
 export function AboutSection() {
   return (
     <section id="about" className="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      {/* Heading + short intro */}
       <div className="text-center max-w-3xl mx-auto">
         <p className="btn-caps text-xs tracking-[0.14em] text-primary mb-2">
           From displacement to empowerment
         </p>
         <h2 className="text-3xl sm:text-4xl font-bold mb-4">About Samawada</h2>
         <p className="text-muted-foreground">
-          We partner with communities to expand clean water access and the opportunity it unlocks —
-          healthier families, stronger schools, and resilient local economies.
+          We partner with communities to expand clean water access and the opportunity it
+          unlocks — healthier families, stronger schools, and resilient local economies.
         </p>
       </div>
 
+      {/* Mission tiles – placed right under the intro, themed to your site */}
+      <div id="mission" className="mt-10">
+        <h3 className="sr-only">Our Mission</h3>
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="rounded-lg border border-border bg-card p-5">
+            <h4 className="font-semibold mb-2">We Build</h4>
+            <p className="text-sm text-muted-foreground">
+              Boreholes, wells, distribution points and treatment — designed for local
+              conditions and maintained long-term.
+            </p>
+          </div>
+
+          <div className="rounded-lg border border-border bg-card p-5">
+            <h4 className="font-semibold mb-2">We Empower</h4>
+            <p className="text-sm text-muted-foreground">
+              Train well committees, fund maintenance, and strengthen community-led
+              management.
+            </p>
+          </div>
+
+          <div className="rounded-lg border border-border bg-card p-5">
+            <h4 className="font-semibold mb-2">We Educate</h4>
+            <p className="text-sm text-muted-foreground">
+              Hygiene workshops and water stewardship improve health outcomes for families.
+            </p>
+          </div>
+
+          <div className="rounded-lg border border-border bg-card p-5">
+            <h4 className="font-semibold mb-2">We Nourish</h4>
+            <p className="text-sm text-muted-foreground">
+              Clean water frees time for school and livelihoods, boosting local economies.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Two columns */}
       <div className="grid gap-6 lg:grid-cols-2 mt-10">
         {/* Our story */}
         <div className="rounded-lg border border-border bg-card p-6">
           <h3 className="text-xl font-semibold mb-3">Our story</h3>
           <p className="text-muted-foreground">
-            Born in Somalia and displaced by war, our founder rebuilt life in Canada but never forgot those left behind.
-            A 2015 return revealed drought, gender inequality, and fragile livelihoods alongside extraordinary resilience.
-            In 2018 she created <span className="font-semibold">Samawada</span> — “carrying something good” — to partner
-            with communities on clean water, dignity, and long-term opportunity so families can thrive.
+            Born in Somalia and displaced by war, our founder rebuilt life in Canada but never
+            forgot those left behind. A 2015 return revealed drought, gender inequality and
+            fragile livelihoods alongside extraordinary resilience. In 2018 she created{" "}
+            <span className="font-semibold">Samawada</span> — “carrying something good” — to
+            partner with communities on clean water, dignity, and long-term opportunity so
+            families can thrive.
           </p>
           <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
             <li>• Community-led, women-centered solutions</li>
@@ -43,13 +83,7 @@ export function AboutSection() {
               <Link href="/journey">Read the full story</Link>
             </Button>
 
-            {/* New: jump to Mission/How we work on the same page */}
-            <Button
-              asChild
-              variant="outline"
-              size="sm"
-              className="btn-caps cursor-pointer"
-            >
+            <Button asChild variant="outline" size="sm" className="btn-caps cursor-pointer">
               <Link href="/#mission">How we work</Link>
             </Button>
           </div>
@@ -59,8 +93,9 @@ export function AboutSection() {
         <div className="rounded-lg border border-border bg-card p-6">
           <h3 className="text-xl font-semibold mb-3">What we do</h3>
           <p className="text-muted-foreground">
-            We work with local leaders to deliver and maintain clean water systems — deep wells, distribution points,
-            and training — improving health, education, and livelihoods across East African communities.
+            We work with local leaders to deliver and maintain clean water systems — deep
+            wells, distribution points, and training — improving health, education, and
+            livelihoods across East African communities.
           </p>
 
           <div className="mt-5">
