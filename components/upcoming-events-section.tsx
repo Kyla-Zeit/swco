@@ -14,7 +14,7 @@ export function UpcomingEventsSection() {
           </p>
         </div>
 
-        {/* Highlights grid (swap the src URLs for your real embeds) */}
+        {/* Replace src URLs with your actual embeds */}
         <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="rounded-xl border border-border bg-card shadow-sm overflow-hidden">
             <div className="aspect-[9/16]">
@@ -26,7 +26,6 @@ export function UpcomingEventsSection() {
               />
             </div>
           </div>
-
           <div className="rounded-xl border border-border bg-card shadow-sm overflow-hidden">
             <div className="aspect-[9/16]">
               <iframe
@@ -37,7 +36,6 @@ export function UpcomingEventsSection() {
               />
             </div>
           </div>
-
           <div className="rounded-xl border border-border bg-card shadow-sm overflow-hidden">
             <div className="aspect-[9/16]">
               <iframe
@@ -50,11 +48,10 @@ export function UpcomingEventsSection() {
           </div>
         </div>
 
-        {/* CTA as a real button */}
         <div className="text-center mt-8">
           <Button
             asChild
-            className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold cursor-pointer"
+            className="btn-caps bg-primary hover:bg-primary/90 text-primary-foreground font-semibold cursor-pointer"
           >
             <Link
               href="https://www.instagram.com/your-handle/"
