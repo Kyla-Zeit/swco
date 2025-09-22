@@ -124,25 +124,18 @@
   }
 }
 
-/* Custom animations */
+/* Fade-up animation */
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Helper class to use the animation */
 .animate-fade-in-up {
-  animation: fadeInUp 0.6s ease-out both; /* 'both' keeps final state */
+  animation: fadeInUp 0.6s ease-out both;
   will-change: transform, opacity;
 }
 
-/* Optional: easy staggering */
+/* Optional stagger helpers */
 .anim-delay-150 { animation-delay: 150ms; }
 .anim-delay-300 { animation-delay: 300ms; }
 .anim-delay-500 { animation-delay: 500ms; }
