@@ -2,9 +2,9 @@
 
 import Image from "next/image";
 // Drop your partner logos into public/partners/ and import them:
-import partner1 from "@/public/partners/mosaic.png";
-import partner2 from "@/public/partners/mandani.png";
-import partner3 from "@/public/partners/mgp.png";
+import partner1 from "@/public/mosaic.png";
+import partner2 from "@/public/mandani.png";
+import partner3 from "@/public/mgp.png";
 
 export function MissionSection() {
   return (
