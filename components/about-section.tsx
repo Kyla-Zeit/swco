@@ -4,18 +4,19 @@ import { Button } from "@/components/ui/button";
 
 export function AboutSection() {
   return (
+    // no outer card, just a normal section
     <section id="about" className="py-20 bg-muted">
-      {/* Center like other sections */}
+      {/* this centers it to the same width as the other sections */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Nice, contained panel */}
-        <div className="mx-auto max-w-6xl rounded-xl border bg-background p-6 md:p-8 shadow-sm">
+        {/* optional: keep content from stretching too wide on huge screens */}
+        <div className="mx-auto max-w-5xl">
           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-primary mb-2">
             Who we are
           </p>
 
           <h2 className="text-3xl sm:text-4xl font-bold mb-4">About Samawada</h2>
 
-          <p className="text-muted-foreground mb-8 max-w-3xl">
+          <p className="text-muted-foreground mb-8">
             Samawada connects communities to art, history, and each other through exhibitions,
             education, and open digital access. We work with artists, historians, and local
             partners to surface stories that matter.
