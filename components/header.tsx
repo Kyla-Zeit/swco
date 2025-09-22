@@ -51,7 +51,7 @@ export function Header() {
 
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-12 lg:gap-16 xl:gap-20">
-            <Link href="/#about" className={navLink}>Our Story</Link>
+            <Link href="/#about" className={navLink}>About</Link>
             <Link href="/#projects" className={navLink}>Projects</Link>
             <Link href="/#impact" className={navLink}>Impact</Link>
             <Link href="/#contact" className={navLink}>Contact</Link>
