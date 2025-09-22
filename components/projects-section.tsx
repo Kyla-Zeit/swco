@@ -1,88 +1,101 @@
-import { Card, CardContent } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { MapPin, Calendar, Users } from "lucide-react"
+// components/projects-section.tsx
+"use client";
 
-const projects = [
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Calendar, MapPin, Users } from "lucide-react";
+
+type Project = {
+  id: string;
+  title: string;
+  summary: string;
+  status: "Active" | "Completed";
+  location: string;
+  year: number;
+  people: number;
+};
+
+const projects: Project[] = [
   {
+    id: "mogadishu-water-initiative",
     title: "Mogadishu Water Initiative",
-    location: "Mogadishu, Somalia",
-    date: "2024",
-    beneficiaries: "5,000 people",
-    image: "/water-distribution-center-in-mogadishu-with-blue-w.jpg",
-    description: "Establishing sustainable water distribution points in urban areas of Mogadishu.",
+    summary:
+      "Establishing sustainable water distribution points in urban areas of Mogadishu.",
     status: "Active",
+    location: "Mogadishu, Somalia",
+    year: 2024,
+    people: 5000,
   },
   {
+    id: "rural-well-construction",
     title: "Rural Well Construction",
-    location: "Gedo Region, Somalia",
-    date: "2024",
-    beneficiaries: "2,500 people",
-    image: "/hand-pump-water-well-in-rural-somalia-with-women-c.jpg",
-    description: "Building deep water wells in remote rural communities.",
+    summary:
+      "Building deep water wells in remote rural communities.",
     status: "Completed",
+    location: "Gedo Region, Somalia",
+    year: 2024,
+    people: 2500,
   },
   {
+    id: "school-water-program",
     title: "School Water Program",
-    location: "Bay Region, Somalia",
-    date: "2023",
-    beneficiaries: "1,200 students",
-    image: "/school-children-in-somalia-using-clean-water-facil.jpg",
-    description: "Installing water systems in schools to improve education and health.",
+    summary:
+      "Installing water systems in schools to improve education and health.",
     status: "Completed",
+    location: "Bay Region, Somalia",
+    year: 2023,
+    people: 1200,
   },
-]
+];
+
+function StatusPill({ status }: { status: Project["status"] }) {
+  const styles =
+    status === "Active"
+      ? "bg-emerald-100 text-emerald-700"
+      : "bg-sky-100 text-sky-700";
+  return (
+    <span className={`inline-flex items-center rounded-full px-2 py-1 text-xs font-medium ${styles}`}>
+      {status}
+    </span>
+  );
+}
 
 export function ProjectsSection() {
   return (
-    <section id="projects" className="py-20 bg-secondary">
+    <section id="projects" className="py-20 bg-muted/50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6">Our Projects</h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
-            Discover the communities we're transforming through sustainable water solutions
+        {/* Heading */}
+        <div className="text-center mb-10">
+          <h2 className="text-3xl sm:text-4xl font-bold">Our Projects</h2>
+          <p className="mt-2 text-muted-foreground max-w-2xl mx-auto">
+            Discover the communities we’re transforming through sustainable water solutions.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
-            <Card
-              key={index}
-              className="overflow-hidden border-0 shadow-lg hover:shadow-xl transition-shadow duration-300"
-            >
-              <div className="aspect-video overflow-hidden">
-                <img
-                  src={project.image || "/placeholder.svg"}
-                  alt={project.title}
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                />
-              </div>
+        {/* Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {projects.map((p) => (
+            <Card key={p.id} className="border-border bg-card shadow-sm">
+              <CardHeader className="space-y-2">
+                <StatusPill status={p.status} />
+                <CardTitle className="text-xl">{p.title}</CardTitle>
+              </CardHeader>
+              <CardContent className="text-sm text-muted-foreground space-y-4">
+                <p>{p.summary}</p>
 
-              <CardContent className="p-6">
-                <div className="flex items-center justify-between mb-4">
-                  <span
-                    className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                      project.status === "Active" ? "bg-accent/10 text-accent" : "bg-primary/10 text-primary"
-                    }`}
-                  >
-                    {project.status}
-                  </span>
-                </div>
-
-                <h3 className="text-xl font-semibold text-foreground mb-3">{project.title}</h3>
-                <p className="text-muted-foreground text-sm mb-4 leading-relaxed">{project.description}</p>
-
-                <div className="space-y-2 text-sm text-muted-foreground">
-                  <div className="flex items-center space-x-2">
-                    <MapPin className="w-4 h-4" />
-                    <span>{project.location}</span>
+                <div className="space-y-2 text-foreground/80">
+                  <div className="flex items-center gap-2">
+                    <MapPin className="w-4 h-4 opacity-70" />
+                    <span>{p.location}</span>
                   </div>
-                  <div className="flex items-center space-x-2">
-                    <Calendar className="w-4 h-4" />
-                    <span>{project.date}</span>
+                  <div className="flex items-center gap-2">
+                    <Calendar className="w-4 h-4 opacity-70" />
+                    <span>{p.year}</span>
                   </div>
-                  <div className="flex items-center space-x-2">
-                    <Users className="w-4 h-4" />
-                    <span>{project.beneficiaries}</span>
+                  <div className="flex items-center gap-2">
+                    <Users className="w-4 h-4 opacity-70" />
+                    <span>{p.people.toLocaleString()} people</span>
                   </div>
                 </div>
               </CardContent>
@@ -90,12 +103,18 @@ export function ProjectsSection() {
           ))}
         </div>
 
-        <div className="text-center mt-12">
-          <Button variant="outline" size="lg" className="font-semibold bg-transparent">
-            View All Projects
+        {/* CTA */}
+        <div className="mt-6 flex justify-center">
+          <Button
+            asChild
+            size="sm"
+            className="btn-caps bg-primary hover:bg-primary/90 text-primary-foreground font-semibold cursor-pointer"
+          >
+            {/* Replace href with a real page when you add it, e.g. /projects */}
+            <Link href="/#projects">View All Projects</Link>
           </Button>
         </div>
       </div>
     </section>
-  )
+  );
 }
