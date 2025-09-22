@@ -145,6 +145,12 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Small caps for buttons */
+.btn-caps {
+  font-variant-caps: small-caps;
+  letter-spacing: .02em; /* looks intentional instead of “screaming” */
+}
+
 
 /* All anchored sections offset by header height */
 [id] { scroll-margin-top: 84px; }          /* mobile (h-16 ≈ 64px + buffer) */
