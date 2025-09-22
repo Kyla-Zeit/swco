@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button";
 export function AboutSection() {
   return (
     <section id="about" className="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
-      {/* Top intro */}
       <div className="text-center max-w-3xl mx-auto">
         <p className="btn-caps text-xs tracking-[0.14em] text-primary mb-2">
           From displacement to empowerment
@@ -19,33 +18,39 @@ export function AboutSection() {
         </p>
       </div>
 
-      {/* Two columns */}
       <div className="grid gap-6 lg:grid-cols-2 mt-10">
         {/* Our story */}
         <div className="rounded-lg border border-border bg-card p-6">
           <h3 className="text-xl font-semibold mb-3">Our story</h3>
-
           <p className="text-muted-foreground">
             Born in Somalia and displaced by war, our founder rebuilt life in Canada but never forgot those left behind.
-            A 2015 return revealed drought, gender inequality, and fragile livelihoods alongside extraordinary
-            resilience. In 2018 she created <span className="font-semibold">Samawada</span> — “carrying something
-            good” — to partner with communities on clean water, dignity, and long-term opportunity so families can
-            thrive.
+            A 2015 return revealed drought, gender inequality, and fragile livelihoods alongside extraordinary resilience.
+            In 2018 she created <span className="font-semibold">Samawada</span> — “carrying something good” — to partner
+            with communities on clean water, dignity, and long-term opportunity so families can thrive.
           </p>
-
           <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
             <li>• Community-led, women-centered solutions</li>
             <li>• Clean water access with ongoing maintenance</li>
             <li>• Climate-resilient projects and transparent impact</li>
           </ul>
 
-          <div className="mt-5">
+          <div className="mt-5 flex flex-wrap gap-3">
             <Button
               asChild
               size="sm"
               className="btn-caps cursor-pointer bg-primary hover:bg-primary/90 text-primary-foreground font-semibold"
             >
-              <Link href="/journey">Read The Full Story</Link>
+              <Link href="/journey">Read the full story</Link>
+            </Button>
+
+            {/* New: jump to Mission/How we work on the same page */}
+            <Button
+              asChild
+              variant="outline"
+              size="sm"
+              className="btn-caps cursor-pointer"
+            >
+              <Link href="/#mission">How we work</Link>
             </Button>
           </div>
         </div>
