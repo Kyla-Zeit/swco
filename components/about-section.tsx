@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 
 export function AboutSection() {
   return (
@@ -8,7 +8,9 @@ export function AboutSection() {
       <p className="text-xs font-semibold uppercase tracking-[0.14em] text-primary mb-2">
         Who we are
       </p>
+
       <h2 className="text-3xl sm:text-4xl font-bold mb-4">About Samawada</h2>
+
       <p className="text-muted-foreground max-w-prose mb-8">
         Samawada connects communities to art, history, and each other through exhibitions,
         education, and open digital access. We work with artists, historians, and local
@@ -47,5 +49,5 @@ export function AboutSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
