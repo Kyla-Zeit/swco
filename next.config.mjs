@@ -3,10 +3,10 @@ const repo = 'swco';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',              // produce static files
-  basePath: `/${repo}`,          // project pages live at /swco
-  assetPrefix: `/${repo}/`,      // fix asset URLs (CSS/JS/images)
-  images: { unoptimized: true }, // required for export with next/image
-  trailingSlash: true            // friendlier with GitHub Pages
+  output: "export", // ensures Next.js exports static HTML
+  images: {
+    unoptimized: true, // fixes <Image> issues on GitHub Pages
+  },
 };
+
 export default nextConfig;
