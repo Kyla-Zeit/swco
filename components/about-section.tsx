@@ -17,7 +17,7 @@ export function AboutSection() {
         </p>
       </div>
 
-      {/* 🔥 Mission tiles: bigger, bolder, with icons + hover lift */}
+      {/* Mission tiles */}
       <div id="mission" className="mt-10 max-w-6xl mx-auto">
         <h3 className="sr-only">Our Mission</h3>
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -44,10 +44,10 @@ export function AboutSection() {
         </div>
       </div>
 
-      {/* Two columns */}
-      <div className="grid gap-6 lg:grid-cols-2 mt-10">
+      {/* Two columns – equal height cards */}
+      <div className="grid gap-6 lg:grid-cols-2 mt-10 items-stretch">
         {/* Our story */}
-        <div className="rounded-lg border border-border bg-card p-6">
+        <div className="h-full flex flex-col rounded-lg border border-border bg-card p-6">
           <h3 className="text-xl font-semibold mb-3">Our story</h3>
           <p className="text-muted-foreground">
             Born in Somalia and displaced by war, our founder rebuilt life in Canada but never
@@ -63,7 +63,8 @@ export function AboutSection() {
             <li>• Climate-resilient projects and transparent impact</li>
           </ul>
 
-          <div className="mt-5 flex flex-wrap gap-3">
+          {/* push actions to the bottom */}
+          <div className="mt-auto pt-4 flex flex-wrap gap-3">
             <Button
               asChild
               size="sm"
@@ -75,7 +76,7 @@ export function AboutSection() {
         </div>
 
         {/* What we do */}
-        <div className="rounded-lg border border-border bg-card p-6 mt-3 md:mt-4 lg:mt-5">
+        <div className="h-full flex flex-col rounded-lg border border-border bg-card p-6">
           <h3 className="text-xl font-semibold mb-3">What we do</h3>
           <p className="text-muted-foreground">
             Samawada pairs science, training, and local leadership to keep safe water flowing.
@@ -88,19 +89,14 @@ export function AboutSection() {
             livelihoods, and steward their environment.
           </p>
 
-          <div className="mt-5">
+          {/* push action to the bottom */}
+          <div className="mt-auto pt-4">
             <Button
               asChild
               size="sm"
               className="btn-caps cursor-pointer bg-primary hover:bg-primary/90 text-primary-foreground font-semibold"
             >
-              <Link
-                href="https://samawada.org/what-we-do/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                See Our Approach
-              </Link>
+              <Link href="/what-we-do">See Our Approach</Link>
             </Button>
           </div>
         </div>
@@ -121,17 +117,11 @@ function MissionCard({
   text: string;
 }) {
   return (
-    <div
-      className="group relative overflow-hidden rounded-2xl border border-border bg-card p-6 shadow-sm transition
-                 hover:-translate-y-1 hover:shadow-lg"
-    >
+    <div className="group relative overflow-hidden rounded-2xl border border-border bg-card p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
       {/* accent stripe */}
       <div className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-primary/80 via-emerald-400/60 to-primary/80" />
       <div className="flex items-start gap-3">
-        <div
-          className="rounded-xl bg-primary/10 p-2 ring-1 ring-primary/20 transition
-                     group-hover:bg-primary group-hover:text-primary-foreground group-hover:ring-primary/30"
-        >
+        <div className="rounded-xl bg-primary/10 p-2 ring-1 ring-primary/20 transition group-hover:bg-primary group-hover:text-primary-foreground group-hover:ring-primary/30">
           {icon}
         </div>
         <h4 className="text-lg font-semibold">{title}</h4>
