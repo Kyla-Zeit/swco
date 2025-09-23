@@ -36,17 +36,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body className={`${workSans.variable} ${openSans.variable} antialiased`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <Header />
-          {/* header is fixed; pad the top so content isn't hidden */}
-          <main className="pt-16 lg:pt-[76px]">{children}</main>
-          <Footer />
-        </ThemeProvider>
+<ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+  <Header />
+  <main className="pt-16 lg:pt-[76px]">{children}</main>
+  <Footer />
+</ThemeProvider>
+
       </body>
     </html>
   );
