@@ -29,7 +29,7 @@ const leadership: TeamMember[] = [
     name: "Ayan Dualeh",
     role: "Founder and President",
     bio:
-      "Ayan obtained a Master of Management with a specialization in Human Resources Management and is deeply committed to giving back to her community and making a positive impact globally. One of Ayan’s most cherished achievements is founding the Harmony Iftar Dinner, a beloved initiative that brings people together in celebration and solidarity. In addition to this, she has launched several other impactful projects aimed at empowering individuals and fostering meaningful connections. Through Gateways to Success, Ayan provides mentorship to youth in Ottawa, helping them navigate the path from dreams to reality. Ayan is also the founder of the Women’s Power Lunch, a space dedicated to empowering women from diverse backgrounds. This initiative fosters mutual support and inspiration, creating a network of women who uplift one another in their personal and professional journeys. Currently, Ayan serves as the Chief Executive Officer of Digital Connections Inc., a leading fiber technology company, where she continues to drive innovation and excellence.",
+      "Ayan Dualeh holds a Master of Management in Human Resources and is dedicated to community impact and global change. She founded the Harmony Iftar Dinner and several other initiatives, including Gateways to Success (mentorship for Ottawa youth) and the Women’s Power Lunch (empowering women through networking and support). Currently, she serves as CEO of Digital Connections Inc., a leading fiber technology company, where she drives innovation and excellence.",
     image: "/team/asha.jpg",
     email: "info@samawada.org",
     linkedin: "https://www.linkedin.com",
