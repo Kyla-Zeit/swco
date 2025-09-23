@@ -1,3 +1,4 @@
+// components/header.tsx
 "use client";
 
 import { useState, useCallback } from "react";
@@ -13,9 +14,14 @@ export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
 
-  const navLink =
+  const baseNav =
     "nav-link text-[1.125rem] lg:text-[1.2rem] font-medium tracking-[0.02em] opacity-80 hover:opacity-100 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 transition-colors";
 
+  // highlight when we're on an actual page route (e.g., /our-team)
+  const navClass = (href: string) =>
+    pathname === href ? `${baseNav} opacity-100 text-foreground` : baseNav;
+
+  // If user is already on home, clicking logo scrolls to top smoothly
   const handleLogoClick = useCallback(
     (e: ReactMouseEvent<HTMLAnchorElement>) => {
       if (pathname === "/") {
@@ -30,7 +36,7 @@ export function Header() {
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-[76px]">
-          {/* Logo → home; if already home, just scroll to top */}
+          {/* Logo */}
           <Link
             href="/"
             onClick={handleLogoClick}
@@ -51,18 +57,18 @@ export function Header() {
 
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-12 lg:gap-16 xl:gap-20">
-            <Link href="/#impact" className={navLink}>Impact</Link>
-            <Link href="/#about" className={navLink}>About</Link>
-            <Link href="/#projects" className={navLink}>Projects</Link>
-            <Link href="/#events" className={navLink}>Events</Link>
-            <Link href="/#contact" className={navLink}>Contact</Link>
+            <Link href="/#about" className={baseNav}>Our Story</Link>
+            <Link href="/#projects" className={baseNav}>Projects</Link>
+            <Link href="/our-team" className={navClass("/our-team")}>Team</Link>
+            <Link href="/#impact" className={baseNav}>Impact</Link>
+            <Link href="/#contact" className={baseNav}>Contact</Link>
           </nav>
 
           {/* Desktop CTA */}
           <div className="hidden md:flex">
             <Button
               size="sm"
-              className="btn-caps h-11 px-6 text-[1rem] bg-primary hover:bg-primary/90 text-primary-foreground font-semibold cursor-pointer"
+              className="btn-caps cursor-pointer h-11 px-6 text-[1rem] bg-primary hover:bg-primary/90 text-primary-foreground font-semibold"
               onClick={() =>
                 document.getElementById("donate")?.scrollIntoView({ behavior: "smooth" })
               }
@@ -71,7 +77,7 @@ export function Header() {
             </Button>
           </div>
 
-          {/* Mobile button */}
+          {/* Mobile toggle */}
           <button
             className="md:hidden p-2 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -82,14 +88,16 @@ export function Header() {
           </button>
         </div>
 
-        {/* Mobile nav */}
+        {/* Mobile menu */}
         {isMenuOpen && (
           <div className="md:hidden py-4 border-t border-border">
             <nav className="flex flex-col space-y-5 text-[1.125rem]">
-              <Link href="/#about" className={navLink} onClick={() => setIsMenuOpen(false)}>About &amp; Story</Link>
-              <Link href="/#projects" className={navLink} onClick={() => setIsMenuOpen(false)}>Projects</Link>
-              <Link href="/#impact" className={navLink} onClick={() => setIsMenuOpen(false)}>Impact</Link>
-              <Link href="/#contact" className={navLink} onClick={() => setIsMenuOpen(false)}>Contact</Link>
+              <Link href="/#about" className={baseNav} onClick={() => setIsMenuOpen(false)}>Our Story</Link>
+              <Link href="/#projects" className={baseNav} onClick={() => setIsMenuOpen(false)}>Projects</Link>
+              <Link href="/our-team" className={navClass("/our-team")} onClick={() => setIsMenuOpen(false)}>Team</Link>
+              <Link href="/#impact" className={baseNav} onClick={() => setIsMenuOpen(false)}>Impact</Link>
+              <Link href="/#contact" className={baseNav} onClick={() => setIsMenuOpen(false)}>Contact</Link>
+
               <Button
                 size="sm"
                 className="btn-caps mt-2 w-fit h-11 px-6 text-[1rem] bg-primary hover:bg-primary/90 text-primary-foreground font-semibold cursor-pointer"
