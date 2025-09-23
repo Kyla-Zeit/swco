@@ -50,11 +50,11 @@ const leadership: TeamMember[] = [
     linkedin: "https://www.linkedin.com",
   },
   {
-    name: "Mohamed Ali",
-    role: "Water Systems Technician",
+    name: "Fatima Suleiman",
+    role: "Communication",
     bio:
       "Oversees borehole maintenance, water quality testing, and infrastructure reliability.",
-    image: "/team/mohamed.jpg",
+    image: "/team/fatima.jpg",
     linkedin: "https://www.linkedin.com",
   },
   {
@@ -65,9 +65,6 @@ const leadership: TeamMember[] = [
     image: "/team/fatima.jpg",
     linkedin: "https://www.linkedin.com",
   },
-];
-
-const advisors: TeamMember[] = [
   {
     name: "Dr. Lina Ibrahim",
     role: "Public Health Advisor",
