@@ -1,12 +1,11 @@
-// next.config.mjs
-const repo = 'swco';
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: "export", // ensures Next.js exports static HTML
+  output: "export",
   images: {
-    unoptimized: true, // fixes <Image> issues on GitHub Pages
+    unoptimized: true,
   },
+  basePath: "/swco",        // 👈 your repo name
+  assetPrefix: "/swco/",    // 👈 prefix static assets with repo name
 };
 
 export default nextConfig;
