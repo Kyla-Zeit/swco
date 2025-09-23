@@ -1,10 +1,12 @@
 // app/page.tsx
-import Navigation from "@/components/ui/navigation";
-import HeroSection from "@/components/ui/hero-section";
-import ServicesSection from "@/components/ui/services-section";
-import GallerySection from "@/components/ui/gallery-section";
-import TestimonialsSection from "@/components/ui/testimonials-section";
-import Footer from "@/components/ui/footer";
+import { HeroSection } from "@/components/hero-section";
+import { ImpactSection } from "@/components/impact-section";
+import { AboutSection } from "@/components/about-section";
+import { ProjectsSection } from "@/components/projects-section";
+import { UpcomingEventsSection } from "@/components/upcoming-events-section";
+import { TestimonialsSection } from "@/components/testimonials-section";
+import { DonationSection } from "@/components/donation-section";
+
 export default function HomePage() {
   return (
     <>
