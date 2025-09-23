@@ -60,7 +60,7 @@ export function Header() {
             <Link href="/#about" className={baseNav}>Our Story</Link>
             <Link href="/#projects" className={baseNav}>Projects</Link>
             <Link href="/our-team" className={navClass("/our-team")}>Team</Link>
-            <Link href="/#impact" className={baseNav}>Impact</Link>
+            <Link href="/#impact" className={baseNav}("/impact-section")}>Impact</Link>
             <Link href="/#contact" className={baseNav("/footer")}>Contact</Link>
           </nav>
 

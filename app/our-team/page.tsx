@@ -145,16 +145,18 @@ function Section({
   subtitle,
   people,
 }: {
-  title: string;
+  title?: string;
   subtitle?: string;
   people: TeamMember[];
 }) {
   return (
     <section className="mt-14">
-      <div className="mb-6 text-center">
-        <h2 className="text-2xl font-bold">{title}</h2>
-        {subtitle && <p className="mt-1 text-muted-foreground">{subtitle}</p>}
-      </div>
+      {(title || subtitle) && (
+        <div className="mb-6 text-center">
+          {title && <h2 className="text-2xl font-bold">{title}</h2>}
+          {subtitle && <p className="mt-1 text-muted-foreground">{subtitle}</p>}
+        </div>
+      )}
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {people.map((m) => (
           <TeamCard key={m.name} m={m} />
@@ -183,8 +185,8 @@ export default function TeamPage() {
         </p>
       </div>
 
-      {/* Leadership only */}
-      <Section title="Leadership" people={leadership} />
+      {/* Leadership (no title shown) */}
+      <Section people={leadership} />
 
       {/* CTA */}
       <div className="mt-16 rounded-2xl border border-border bg-card/60 p-6 text-center">
