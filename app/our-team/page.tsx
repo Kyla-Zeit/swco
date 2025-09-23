@@ -89,9 +89,6 @@ function TeamCard({ m }: { m: TeamMember }) {
       <div className="p-5">
         <h3 className="text-lg font-semibold leading-tight">{m.name}</h3>
         <p className="text-sm text-muted-foreground">{m.role}</p>
-        {m.location && (
-          <p className="mt-1 text-xs text-muted-foreground/80">{m.location}</p>
-        )}
         {m.bio && <p className="mt-3 text-sm text-muted-foreground">{m.bio}</p>}
 
         {/* socials */}
@@ -191,10 +188,9 @@ export default function TeamPage() {
 
       {/* Groups */}
       <Section title="Leadership" people={leadership} />
-      <Section title="Field Operations" people={fieldTeam} />
       <Section
         title="Advisors & Partners"
-        people={advisors}
+        people={leadership}
         subtitle="Subject-matter experts and allies who help us go further."
       />
 
