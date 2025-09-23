@@ -76,24 +76,7 @@ export function WhatWeDoContent() {
         </div>
       </div>
 
-      {/* Optional CTA */}
-      <div className="mt-12 flex items-center justify-center gap-3">
-        <Button
-          asChild
-          size="sm"
-          className="btn-caps cursor-pointer bg-primary hover:bg-primary/90 text-primary-foreground font-semibold"
-        >
-          <a href="/#donate">Donate</a>
-        </Button>
-        <Button
-          asChild
-          variant="outline"
-          size="sm"
-          className="btn-caps cursor-pointer"
-        >
-          <a href="/#contact">Contact</a>
-        </Button>
-      </div>
+
     </section>
   );
 }
