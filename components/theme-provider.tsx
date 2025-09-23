@@ -2,10 +2,9 @@
 
 import * as React from "react";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
+// NOTE: import the prop types so TS knows about `attribute`, `defaultTheme`, etc.
+import type { ThemeProviderProps } from "next-themes/dist/types";
 
-// Re-export a thin wrapper with the same props as next-themes
-export function ThemeProvider(
-  props: React.ComponentProps<typeof NextThemesProvider>
-) {
-  return <NextThemesProvider {...props} />;
+export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
+  return <NextThemesProvider {...props}>{children}</NextThemesProvider>;
 }
