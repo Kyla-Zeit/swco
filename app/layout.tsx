@@ -2,19 +2,19 @@
 import "./globals.css"; // keep this
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { Work_Sans, Open_Sans } from "next/font/google";
+import { Work_Sans as WorkSans, Open_Sans as OpenSans } from "next/font/google";
 
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { ThemeProvider } from "@/components/theme-provider";
 
-const workSans = Work_Sans({
+const workSans = WorkSans({
   subsets: ["latin"],
   variable: "--font-work-sans",
   display: "swap",
 });
 
-const openSans = Open_Sans({
+const openSans = OpenSans({
   subsets: ["latin"],
   variable: "--font-open-sans",
   display: "swap",
