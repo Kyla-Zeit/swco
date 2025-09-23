@@ -91,7 +91,6 @@ function TeamCard({ m }: { m: TeamMember }) {
         <p className="text-sm text-muted-foreground">{m.role}</p>
         {m.bio && <p className="mt-3 text-sm text-muted-foreground">{m.bio}</p>}
 
-        {/* socials */}
         {(m.email || m.linkedin || m.website) && (
           <div className="mt-4 flex items-center gap-3">
             {m.email && (
@@ -154,9 +153,7 @@ function Section({
     <section className="mt-14">
       <div className="mb-6 text-center">
         <h2 className="text-2xl font-bold">{title}</h2>
-        {subtitle && (
-          <p className="mt-1 text-muted-foreground">{subtitle}</p>
-        )}
+        {subtitle && <p className="mt-1 text-muted-foreground">{subtitle}</p>}
       </div>
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {people.map((m) => (
@@ -186,13 +183,8 @@ export default function TeamPage() {
         </p>
       </div>
 
-      {/* Groups */}
+      {/* Leadership only */}
       <Section title="Leadership" people={leadership} />
-      <Section
-        title="Advisors & Partners"
-        people={leadership}
-        subtitle="Subject-matter experts and allies who help us go further."
-      />
 
       {/* CTA */}
       <div className="mt-16 rounded-2xl border border-border bg-card/60 p-6 text-center">
