@@ -53,35 +53,17 @@ const leadership: TeamMember[] = [
     name: "Fatima Suleiman",
     role: "Communication",
     bio:
-      "Oversees borehole maintenance, water quality testing, and infrastructure reliability.",
+      "Law student with experience in legal research, policy, and advocacy, committed to social justice and international development.",
     image: "/team/fatima.jpg",
     linkedin: "https://www.linkedin.com",
   },
   {
-    name: "Fatima Hussein",
-    role: "WASH Trainer",
+    name: "Anisa Shafea",
+    role: "Secretary",
     bio:
-      "Leads hygiene, sanitation, and safe water storage workshops for schools and households.",
-    image: "/team/fatima.jpg",
+      "Regulatory Business Coordinator at Environment and Climate Change Canada, Public Service Award of Excellence recipient, and dedicated Samawada Board member.",
+    image: "/team/anisa.jpg",
     linkedin: "https://www.linkedin.com",
-  },
-  {
-    name: "Dr. Lina Ibrahim",
-    role: "Public Health Advisor",
-    bio:
-      "Advises on WASH best practices and health outcomes tracking.",
-    image: "/team/lina.jpg",
-    website: "https://example.com",
-    location: "Nairobi, Kenya",
-  },
-  {
-    name: "Patrick Mensah",
-    role: "Sustainability Advisor",
-    bio:
-      "Supports climate-resilient planning, tree-planting, and land restoration.",
-    image: "/team/patrick.jpg",
-    linkedin: "https://www.linkedin.com",
-    location: "Accra, Ghana",
   },
 ];
 
