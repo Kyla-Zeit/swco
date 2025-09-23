@@ -1,3 +1,4 @@
+// components/hero-section.tsx
 "use client";
 
 import Image from "next/image";
@@ -8,7 +9,7 @@ import { ArrowRight, Play } from "lucide-react";
 export function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image */}
+      {/* Background image */}
       <Image
         src={hero}
         alt=""
@@ -33,20 +34,26 @@ export function HeroSection() {
           </p>
 
           <div className="animate-fade-in-up anim-delay-300 flex flex-col sm:flex-row gap-4 justify-center items-center">
+            {/* Donate — same look and feel as the header button */}
             <Button
-              size="lg"
-              className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold text-lg px-8 py-4 group"
-              onClick={() => document.getElementById("donate")?.scrollIntoView({ behavior: "smooth" })}
+              size="sm"
+              className="btn-caps cursor-pointer h-11 px-6 text-[1rem] bg-primary hover:bg-primary/90 text-primary-foreground font-semibold group"
+              onClick={() =>
+                document.getElementById("donate")?.scrollIntoView({ behavior: "smooth" })
+              }
             >
               Donate Now
-              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="ml-2 w-5 h-5 -mr-1 transition-transform group-hover:translate-x-1" />
             </Button>
 
+            {/* Learn more — outline, but still small-caps + pointer, with play icon */}
             <Button
               variant="outline"
-              size="lg"
-              className="border-white text-white hover:bg-white hover:text-black font-semibold text-lg px-8 py-4 group bg-transparent"
-              onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })}
+              size="sm"
+              className="btn-caps cursor-pointer h-11 px-6 text-[1rem] border-white text-white hover:bg-white hover:text-black font-semibold bg-transparent group"
+              onClick={() =>
+                document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })
+              }
             >
               <Play className="mr-2 w-5 h-5" />
               Learn More
@@ -54,7 +61,7 @@ export function HeroSection() {
           </div>
 
           {/* Stats */}
-          <div className="animate-fade-in-up anim-delay-500 grid grid-cols-1 sm:grid-cols-3 gap-8 mt-16 pt-16 border-t border-white/20">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mt-16 pt-16 border-t border-white/20">
             <div className="text-center">
               <div className="text-3xl sm:text-4xl font-bold text-accent mb-2">50,000+</div>
               <div className="text-white/80">People Served</div>
