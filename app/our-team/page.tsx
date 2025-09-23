@@ -20,7 +20,6 @@ type TeamMember = {
   email?: string;
   linkedin?: string;
   website?: string;
-  location?: string;
 };
 
 // ---------- data (edit freely) ----------
@@ -29,31 +28,26 @@ const leadership: TeamMember[] = [
     name: "Ayan Dualeh",
     role: "Founder and President",
     bio:
-      "Ayan Dualeh holds a Master of Management in Human Resources and is dedicated to community impact and global change. She founded the Harmony Iftar Dinner and several other initiatives, including Gateways to Success (mentorship for Ottawa youth) and the Women’s Power Lunch (empowering women through networking and support). Currently, she serves as CEO of Digital Connections Inc., a leading fiber technology company, where she drives innovation and excellence.",
-    image: "/team/asha.jpg",
+      "CEO of Digital Connections Inc., founder of the Harmony Iftar Dinner and Women’s Power Lunch, and mentor through Gateways to Success, empowering youth and women in Ottawa.",
+    image: "/team/ayan.jpg",
     email: "info@samawada.org",
     linkedin: "https://www.linkedin.com",
-    location: "Toronto, Canada • Somalia",
   },
   {
-    name: "Abdi Warsame",
-    role: "Programs Director",
+    name: "Alan Riddel",
+    role: "Vise President",
     bio:
-      "Guides field operations and monitoring for water systems, sanitation, and community training.",
-    image: "/team/abdi.jpg",
+      "Partner at Soloway Wright LLP, expert in employment, administrative, and human rights law, with work cited by the Supreme Court of Canada. Passionate cross-country skier, canoeist, and outdoor enthusiast.",
+    image: "/team/alan.jpg",
     linkedin: "https://www.linkedin.com",
-    location: "Gedo Region, Somalia",
   },
-];
-
-const fieldTeam: TeamMember[] = [
   {
-    name: "Hodan Isse",
-    role: "Community Engagement Lead",
+    name: "Blandine Stringer",
+    role: "Treasurer",
     bio:
-      "Coordinates local committees and training—ensuring systems are maintained and community-owned.",
-    image: "/team/hodan.jpg",
-    location: "Bay Region, Somalia",
+      "Human resources specialist with experience at Health Canada and PHAC, and former manager in international development. Active board member in interfaith and women’s organizations.",
+    image: "/team/blandine.jpg",
+    linkedin: "https://www.linkedin.com",
   },
   {
     name: "Mohamed Ali",
@@ -61,7 +55,7 @@ const fieldTeam: TeamMember[] = [
     bio:
       "Oversees borehole maintenance, water quality testing, and infrastructure reliability.",
     image: "/team/mohamed.jpg",
-    location: "Gedo Region, Somalia",
+    linkedin: "https://www.linkedin.com",
   },
   {
     name: "Fatima Hussein",
@@ -69,7 +63,7 @@ const fieldTeam: TeamMember[] = [
     bio:
       "Leads hygiene, sanitation, and safe water storage workshops for schools and households.",
     image: "/team/fatima.jpg",
-    location: "Banadir, Somalia",
+    linkedin: "https://www.linkedin.com",
   },
 ];
 
