@@ -1,0 +1,256 @@
+// app/our-team/page.tsx
+import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import { Mail, Linkedin, Globe } from "lucide-react";
+
+// ---------- page meta ----------
+export const metadata: Metadata = {
+  title: "Our Team — Samawada",
+  description:
+    "Meet the team behind Samawada. We partner with communities to expand clean water access and the opportunity it unlocks.",
+};
+
+// ---------- types ----------
+type TeamMember = {
+  name: string;
+  role: string;
+  bio?: string;
+  image?: string; // path in /public or full URL
+  email?: string;
+  linkedin?: string;
+  website?: string;
+  location?: string;
+};
+
+// ---------- data (edit freely) ----------
+const leadership: TeamMember[] = [
+  {
+    name: "Asha Mohamed",
+    role: "Founder & Executive Director",
+    bio:
+      "Leads strategy and partnerships with a focus on community-led, women-centered solutions in East Africa.",
+    image: "/team/asha.jpg",
+    email: "info@samawada.org",
+    linkedin: "https://www.linkedin.com",
+    location: "Toronto, Canada • Somalia",
+  },
+  {
+    name: "Abdi Warsame",
+    role: "Programs Director",
+    bio:
+      "Guides field operations and monitoring for water systems, sanitation, and community training.",
+    image: "/team/abdi.jpg",
+    linkedin: "https://www.linkedin.com",
+    location: "Gedo Region, Somalia",
+  },
+];
+
+const fieldTeam: TeamMember[] = [
+  {
+    name: "Hodan Isse",
+    role: "Community Engagement Lead",
+    bio:
+      "Coordinates local committees and training—ensuring systems are maintained and community-owned.",
+    image: "/team/hodan.jpg",
+    location: "Bay Region, Somalia",
+  },
+  {
+    name: "Mohamed Ali",
+    role: "Water Systems Technician",
+    bio:
+      "Oversees borehole maintenance, water quality testing, and infrastructure reliability.",
+    image: "/team/mohamed.jpg",
+    location: "Gedo Region, Somalia",
+  },
+  {
+    name: "Fatima Hussein",
+    role: "WASH Trainer",
+    bio:
+      "Leads hygiene, sanitation, and safe water storage workshops for schools and households.",
+    image: "/team/fatima.jpg",
+    location: "Banadir, Somalia",
+  },
+];
+
+const advisors: TeamMember[] = [
+  {
+    name: "Dr. Lina Ibrahim",
+    role: "Public Health Advisor",
+    bio:
+      "Advises on WASH best practices and health outcomes tracking.",
+    image: "/team/lina.jpg",
+    website: "https://example.com",
+    location: "Nairobi, Kenya",
+  },
+  {
+    name: "Patrick Mensah",
+    role: "Sustainability Advisor",
+    bio:
+      "Supports climate-resilient planning, tree-planting, and land restoration.",
+    image: "/team/patrick.jpg",
+    linkedin: "https://www.linkedin.com",
+    location: "Accra, Ghana",
+  },
+];
+
+// ---------- components ----------
+function TeamCard({ m }: { m: TeamMember }) {
+  return (
+    <article
+      className="group overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition
+                 hover:-translate-y-1 hover:shadow-lg"
+    >
+      <div className="relative h-56 w-full md:h-60">
+        <Image
+          src={m.image ?? "/team/placeholder.jpg"}
+          alt={m.name}
+          fill
+          sizes="(max-width: 768px) 100vw, 33vw"
+          className="object-cover"
+          priority={false}
+        />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-primary/80 via-emerald-400/60 to-primary/80" />
+      </div>
+
+      <div className="p-5">
+        <h3 className="text-lg font-semibold leading-tight">{m.name}</h3>
+        <p className="text-sm text-muted-foreground">{m.role}</p>
+        {m.location && (
+          <p className="mt-1 text-xs text-muted-foreground/80">{m.location}</p>
+        )}
+        {m.bio && <p className="mt-3 text-sm text-muted-foreground">{m.bio}</p>}
+
+        {/* socials */}
+        {(m.email || m.linkedin || m.website) && (
+          <div className="mt-4 flex items-center gap-3">
+            {m.email && (
+              <a
+                href={`mailto:${m.email}`}
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full
+                           border border-border text-foreground/80 hover:text-primary
+                           hover:border-primary/50 transition focus-visible:outline-none
+                           focus-visible:ring-2 focus-visible:ring-primary/50"
+                aria-label={`Email ${m.name}`}
+              >
+                <Mail className="h-4 w-4" />
+              </a>
+            )}
+            {m.linkedin && (
+              <a
+                href={m.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full
+                           border border-border text-foreground/80 hover:text-primary
+                           hover:border-primary/50 transition focus-visible:outline-none
+                           focus-visible:ring-2 focus-visible:ring-primary/50"
+                aria-label={`LinkedIn — ${m.name}`}
+              >
+                <Linkedin className="h-4 w-4" />
+              </a>
+            )}
+            {m.website && (
+              <a
+                href={m.website}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full
+                           border border-border text-foreground/80 hover:text-primary
+                           hover:border-primary/50 transition focus-visible:outline-none
+                           focus-visible:ring-2 focus-visible:ring-primary/50"
+                aria-label={`Website — ${m.name}`}
+              >
+                <Globe className="h-4 w-4" />
+              </a>
+            )}
+          </div>
+        )}
+      </div>
+    </article>
+  );
+}
+
+function Section({
+  title,
+  subtitle,
+  people,
+}: {
+  title: string;
+  subtitle?: string;
+  people: TeamMember[];
+}) {
+  return (
+    <section className="mt-14">
+      <div className="mb-6 text-center">
+        <h2 className="text-2xl font-bold">{title}</h2>
+        {subtitle && (
+          <p className="mt-1 text-muted-foreground">{subtitle}</p>
+        )}
+      </div>
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {people.map((m) => (
+          <TeamCard key={m.name} m={m} />
+        ))}
+      </div>
+    </section>
+  );
+}
+
+// ---------- page ----------
+export default function TeamPage() {
+  return (
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      {/* Header */}
+      <div className="mx-auto max-w-3xl text-center">
+        <span className="text-xs tracking-widest text-primary/80 btn-caps">
+          WHO WE ARE
+        </span>
+        <h1 className="mt-2 text-3xl sm:text-4xl font-extrabold tracking-tight">
+          Meet the Team
+        </h1>
+        <p className="mt-3 text-muted-foreground">
+          We’re a small, committed team working alongside local partners to
+          build and maintain clean water systems, strengthen sanitation, and
+          grow resilient communities.
+        </p>
+      </div>
+
+      {/* Groups */}
+      <Section title="Leadership" people={leadership} />
+      <Section title="Field Operations" people={fieldTeam} />
+      <Section
+        title="Advisors & Partners"
+        people={advisors}
+        subtitle="Subject-matter experts and allies who help us go further."
+      />
+
+      {/* CTA */}
+      <div className="mt-16 rounded-2xl border border-border bg-card/60 p-6 text-center">
+        <h3 className="text-xl font-semibold">Want to support the mission?</h3>
+        <p className="mt-2 text-muted-foreground">
+          We collaborate with engineers, health practitioners, educators, and
+          community organizers.
+        </p>
+        <div className="mt-4 flex items-center justify-center gap-3">
+          <Link
+            href="/#contact"
+            className="btn-caps inline-flex items-center rounded-md bg-primary px-5 py-2.5 text-primary-foreground
+                       font-semibold tracking-wide hover:bg-primary/90 focus-visible:outline-none
+                       focus-visible:ring-2 focus-visible:ring-primary/50"
+          >
+            Get in touch
+          </Link>
+          <Link
+            href="/#donate"
+            className="btn-caps inline-flex items-center rounded-md border border-primary/30 px-5 py-2.5
+                       text-foreground font-semibold tracking-wide hover:border-primary/60
+                       focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
+          >
+            Donate
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+}
