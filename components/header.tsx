@@ -61,7 +61,7 @@ export function Header() {
             <Link href="/#projects" className={baseNav}>Projects</Link>
             <Link href="/our-team" className={navClass("/our-team")}>Team</Link>
             <Link href="/#impact" className={baseNav}>Impact</Link>
-            <Link href="/#contact" className={baseNav}>Contact</Link>
+            <Link href="/#contact" className={baseNav("/footer")}>Contact</Link>
           </nav>
 
           {/* Desktop CTA */}
