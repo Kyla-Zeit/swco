@@ -12,7 +12,6 @@ export default function HomePage() {
       <ImpactSection />
       <AboutSection />
       <ProjectsSection />
-      {/* ↓ Your Events section now matches the site theme and sits here */}
       <UpcomingEventsSection />
       <TestimonialsSection />
       <DonationSection />
