@@ -2,8 +2,9 @@
 
 import * as React from "react";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
-// NOTE: import the prop types so TS knows about `attribute`, `defaultTheme`, etc.
-import type { ThemeProviderProps } from "next-themes/dist/types";
+
+// Infer the props from the library's ThemeProvider so TS stays happy
+type ThemeProviderProps = React.ComponentProps<typeof NextThemesProvider>;
 
 export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
   return <NextThemesProvider {...props}>{children}</NextThemesProvider>;
