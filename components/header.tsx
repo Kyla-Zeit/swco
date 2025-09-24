@@ -88,7 +88,7 @@ export function Header() {
             <Link href="/#impact"   onClick={handleInPage("impact")}   className={baseNav}>Impact</Link>
             <Link href="/#projects" onClick={handleInPage("projects")} className={baseNav}>Projects</Link>
             <Link href="/#events" onClick={handleInPage("events")} className={baseNav}>Events</Link>
-            <Link href="/#testimonials" onClick={handleInPage("testimonials")} className={baseNav}>Testimonials</Link>
+            <Link href="/#testimonials" onClick={handleInPage("testimonials")} className={baseNav}>Community Voices</Link>
             <Link href="/our-team"  className={navClass("/our-team")}>Team</Link>
             <Link href="/#contact"  onClick={handleInPage("contact")}  className={baseNav}>Contact</Link>
           </nav>
