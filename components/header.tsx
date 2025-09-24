@@ -58,8 +58,7 @@ export function Header() {
           <nav className="hidden md:flex items-center gap-12 lg:gap-16 xl:gap-20">
             <Link href="/#about" className={baseNav}>Our Story</Link>
             <Link href="/#projects" className={baseNav}>Projects</Link>
-            <Link href="/our-team" className={navClass("/our-team")}>Team</Link>
-            <Link href="/#impact" className={baseNav}>Impact</Link>
+            <Link href="/our-team" className={navClass("/our-team")}>Team</Link>  
             <Link href="/#contact" className={baseNav}>Contact</Link>
           </nav>
 
