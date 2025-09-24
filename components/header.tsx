@@ -119,9 +119,9 @@ export function Header() {
           <div className="md:hidden py-4 border-t border-border">
             <nav className="flex flex-col space-y-5 text-[1.125rem]">
               <Link href="/#about"    onClick={handleInPage("about")}    className={baseNav}>Our Story</Link>
+              <Link href="/#impact"   onClick={handleInPage("impact")}   className={baseNav}>Impact</Link>
               <Link href="/#projects" onClick={handleInPage("projects")} className={baseNav}>Projects</Link>
               <Link href="/our-team"  onClick={() => setIsMenuOpen(false)} className={navClass("/our-team")}>Team</Link>
-              <Link href="/#impact"   onClick={handleInPage("impact")}   className={baseNav}>Impact</Link>
               <Link href="/#contact"  onClick={handleInPage("contact")}  className={baseNav}>Contact</Link>
 
               <Button
