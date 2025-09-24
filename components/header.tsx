@@ -85,9 +85,10 @@ export function Header() {
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-12 lg:gap-16 xl:gap-20">
             <Link href="/#about"    onClick={handleInPage("about")}    className={baseNav}>Our Story</Link>
-            <Link href="/#projects" onClick={handleInPage("projects")} className={baseNav}>Projects</Link>
-            <Link href="/our-team"  className={navClass("/our-team")}>Team</Link>
             <Link href="/#impact"   onClick={handleInPage("impact")}   className={baseNav}>Impact</Link>
+            <Link href="/#projects" onClick={handleInPage("projects")} className={baseNav}>Projects</Link>
+            <Link href="/#events" onClick={handleInPage("events")} className={baseNav}>Events</Link>
+            <Link href="/our-team"  className={navClass("/our-team")}>Team</Link>
             <Link href="/#contact"  onClick={handleInPage("contact")}  className={baseNav}>Contact</Link>
           </nav>
 
