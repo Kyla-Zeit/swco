@@ -60,19 +60,25 @@ export function HeroSection() {
             </Button>
           </div>
 
-          {/* Stats */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mt-16 pt-16 border-t border-white/20">
-            <div className="text-center">
-              <div className="text-3xl sm:text-4xl font-bold text-accent mb-2">50,000+</div>
-              <div className="text-white/80">People Served</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl sm:text-4xl font-bold text-accent mb-2">120+</div>
-              <div className="text-white/80">Wells Built</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl sm:text-4xl font-bold text-accent mb-2">15+</div>
-              <div className="text-white/80">Communities</div>
+          {/* Stats (now 4 items including Health Improvement) */}
+          <div className="mt-16 pt-16 border-t border-white/20">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+              <div className="text-center">
+                <div className="text-3xl sm:text-4xl font-bold text-accent mb-2">50,000+</div>
+                <div className="text-white/80">People Served</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl sm:text-4xl font-bold text-accent mb-2">120+</div>
+                <div className="text-white/80">Wells Built</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl sm:text-4xl font-bold text-accent mb-2">85%</div>
+                <div className="text-white/80">Health Improvement</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl sm:text-4xl font-bold text-accent mb-2">15+</div>
+                <div className="text-white/80">Communities</div>
+              </div>
             </div>
           </div>
         </div>
