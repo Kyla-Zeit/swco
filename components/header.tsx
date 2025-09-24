@@ -17,9 +17,23 @@ export function Header() {
   const baseNav =
     "nav-link text-[1.125rem] lg:text-[1.2rem] font-medium tracking-[0.02em] opacity-80 hover:opacity-100 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 transition-colors";
 
-  // highlight when we're on an actual page route (e.g., /our-team)
   const navClass = (href: string) =>
     pathname === href ? `${baseNav} opacity-100 text-foreground` : baseNav;
+
+  // Smooth scroll to a section by id and update the hash without triggering navigation
+  const scrollToId = useCallback((id: string) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+    history.replaceState(null, "", `${location.pathname}#${id}`);
+  }, []);
+
+  // Factory to use on <Link> clicks for in-page anchors
+  const handleInPage = (id: string) => (e: ReactMouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    scrollToId(id);
+    setIsMenuOpen(false);
+  };
 
   // If user is already on home, clicking logo scrolls to top smoothly
   const handleLogoClick = useCallback(
@@ -57,11 +71,11 @@ export function Header() {
 
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-12 lg:gap-16 xl:gap-20">
-            <Link href="/#about" className={baseNav}>Our Story</Link>
-            <Link href="/#projects" className={baseNav}>Projects</Link>
-            <Link href="/our-team" className={navClass("/our-team")}>Team</Link>
-            <Link href="/#impact" className={baseNav}>Impact</Link>
-            <Link href="/#contact" className={baseNav}>Contact</Link>
+            <Link href="/#about"   scroll={false} onClick={handleInPage("about")}   className={baseNav}>Our Story</Link>
+            <Link href="/#projects" scroll={false} onClick={handleInPage("projects")} className={baseNav}>Projects</Link>
+            <Link href="/our-team"  className={navClass("/our-team")}>Team</Link>
+            <Link href="/#impact"   scroll={false} onClick={handleInPage("impact")}   className={baseNav}>Impact</Link>
+            <Link href="/#contact"  scroll={false} onClick={handleInPage("contact")}  className={baseNav}>Contact</Link>
           </nav>
 
           {/* Desktop CTA */}
@@ -69,9 +83,7 @@ export function Header() {
             <Button
               size="sm"
               className="btn-caps cursor-pointer h-11 px-6 text-[1rem] bg-primary hover:bg-primary/90 text-primary-foreground font-semibold"
-              onClick={() =>
-                document.getElementById("donate")?.scrollIntoView({ behavior: "smooth" })
-              }
+              onClick={() => scrollToId("donate")}
             >
               Donate Now
             </Button>
@@ -92,18 +104,18 @@ export function Header() {
         {isMenuOpen && (
           <div className="md:hidden py-4 border-t border-border">
             <nav className="flex flex-col space-y-5 text-[1.125rem]">
-              <Link href="/#about" className={baseNav} onClick={() => setIsMenuOpen(false)}>Our Story</Link>
-              <Link href="/#projects" className={baseNav} onClick={() => setIsMenuOpen(false)}>Projects</Link>
-              <Link href="/our-team" className={navClass("/our-team")} onClick={() => setIsMenuOpen(false)}>Team</Link>
-              <Link href="/#impact" className={baseNav} onClick={() => setIsMenuOpen(false)}>Impact</Link>
-              <Link href="/#contact" className={baseNav} onClick={() => setIsMenuOpen(false)}>Contact</Link>
+              <Link href="/#about"    scroll={false} onClick={handleInPage("about")}    className={baseNav}>Our Story</Link>
+              <Link href="/#projects" scroll={false} onClick={handleInPage("projects")} className={baseNav}>Projects</Link>
+              <Link href="/our-team"  onClick={() => setIsMenuOpen(false)} className={navClass("/our-team")}>Team</Link>
+              <Link href="/#impact"   scroll={false} onClick={handleInPage("impact")}   className={baseNav}>Impact</Link>
+              <Link href="/#contact"  scroll={false} onClick={handleInPage("contact")}  className={baseNav}>Contact</Link>
 
               <Button
                 size="sm"
                 className="btn-caps mt-2 w-fit h-11 px-6 text-[1rem] bg-primary hover:bg-primary/90 text-primary-foreground font-semibold cursor-pointer"
                 onClick={() => {
+                  scrollToId("donate");
                   setIsMenuOpen(false);
-                  document.getElementById("donate")?.scrollIntoView({ behavior: "smooth" });
                 }}
               >
                 Donate Now
