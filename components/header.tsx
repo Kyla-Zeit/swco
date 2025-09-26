@@ -76,7 +76,7 @@ export function Header() {
 
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-12 lg:gap-16 xl:gap-20">
-            <Link href="/#about"   onClick={handleInPage("about")}   className={baseNav}>Our Story</Link>
+            <Link href="/#about"   onClick={handleInPage("about")}   className={baseNav}>About</Link>
             <Link href="/#projects" onClick={handleInPage("projects")} className={baseNav}>Projects</Link>
             <Link href="/our-team"                              className={navClass("/our-team")}>Team</Link>
             {/* If you want Impact back in the row, uncomment: */}
