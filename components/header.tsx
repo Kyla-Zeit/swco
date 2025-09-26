@@ -24,13 +24,14 @@ export function Header() {
     const el = document.getElementById(id);
     if (el) {
       el.scrollIntoView({ behavior: "smooth", block: "start" });
+      // update hash without jump
       history.replaceState(null, "", `/#${id}`);
     }
   }, []);
 
   // Intercept in-page links only when we're already on "/"
-  const handleInPage = (id: string) =>
-    (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleInPage =
+    (id: string) => (e: React.MouseEvent<HTMLAnchorElement>) => {
       if (pathname === "/") {
         e.preventDefault();
         scrollToId(id);
@@ -86,36 +87,47 @@ export function Header() {
                 <ChevronDown className="w-4 h-4 opacity-60 group-hover:opacity-100 transition" />
               </Link>
 
-              {/* Dropdown */}
+              {/* Dropdown wrapper: no dead-gap (top-full), with pt-2 for visual spacing */}
               <div
                 className="
-                  pointer-events-none absolute left-0 mt-2 w-44 rounded-xl border border-border
-                  bg-background shadow-lg opacity-0 translate-y-1 transition
+                  absolute left-0 top-full w-44 pt-2 z-50
+                  opacity-0 translate-y-1 pointer-events-none transition
                   group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto
                   group-focus-within:opacity-100 group-focus-within:translate-y-0 group-focus-within:pointer-events-auto
                 "
               >
-                <Link
-                  href="/our-team"
-                  className="block px-4 py-2 text-sm hover:bg-muted/60 rounded-xl"
-                >
-                  Meet The Team
-                </Link>
-                <Link
-                  href="/testimonials"
-                  onClick={handleInPage("testimonials")}
-                  className="block px-4 py-2 text-sm hover:bg-muted/60 rounded-xl"
-                >
-                  Testimonials
-                </Link>
+                {/* Panel */}
+                <div className="rounded-xl border border-border bg-background shadow-lg overflow-hidden">
+                  <Link
+                    href="/our-team"
+                    className="block px-4 py-2 text-sm hover:bg-muted/60"
+                  >
+                    Meet The Team
+                  </Link>
+                  <Link
+                    href="/#testimonials"
+                    onClick={handleInPage("testimonials")}
+                    className="block px-4 py-2 text-sm hover:bg-muted/60"
+                  >
+                    Testimonials
+                  </Link>
+                </div>
               </div>
             </div>
 
-            <Link href="/#projects" onClick={handleInPage("projects")} className={baseNav}>
+            <Link
+              href="/#projects"
+              onClick={handleInPage("projects")}
+              className={baseNav}
+            >
               Projects
             </Link>
 
-            <Link href="/#contact" onClick={handleInPage("contact")} className={baseNav}>
+            <Link
+              href="/#contact"
+              onClick={handleInPage("contact")}
+              className={baseNav}
+            >
               Contact
             </Link>
           </nav>
@@ -140,7 +152,11 @@ export function Header() {
             aria-label="Toggle menu"
             aria-expanded={isMenuOpen}
           >
-            {isMenuOpen ? <X className="w-6 h-6 text-foreground" /> : <Menu className="w-6 h-6 text-foreground" />}
+            {isMenuOpen ? (
+              <X className="w-6 h-6 text-foreground" />
+            ) : (
+              <Menu className="w-6 h-6 text-foreground" />
+            )}
           </button>
         </div>
 
@@ -148,7 +164,11 @@ export function Header() {
         {isMenuOpen && (
           <div className="md:hidden py-4 border-t border-border">
             <nav className="flex flex-col space-y-4 text-[1.125rem]">
-              <Link href="/#about" onClick={handleInPage("about")} className={baseNav}>
+              <Link
+                href="/#about"
+                onClick={handleInPage("about")}
+                className={baseNav}
+              >
                 About
               </Link>
               {/* Sub-items under About */}
@@ -167,11 +187,19 @@ export function Header() {
                 Testimonials
               </Link>
 
-              <Link href="/#projects" onClick={handleInPage("projects")} className={baseNav}>
+              <Link
+                href="/#projects"
+                onClick={handleInPage("projects")}
+                className={baseNav}
+              >
                 Projects
               </Link>
 
-              <Link href="/#contact" onClick={handleInPage("contact")} className={baseNav}>
+              <Link
+                href="/#contact"
+                onClick={handleInPage("contact")}
+                className={baseNav}
+              >
                 Contact
               </Link>
 
