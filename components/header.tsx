@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import logo from "@/public/logo.webp";
 
 export function Header() {
@@ -24,7 +24,6 @@ export function Header() {
     const el = document.getElementById(id);
     if (el) {
       el.scrollIntoView({ behavior: "smooth", block: "start" });
-      // update the hash without causing a jump
       history.replaceState(null, "", `/#${id}`);
     }
   }, []);
@@ -76,12 +75,42 @@ export function Header() {
 
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-12 lg:gap-16 xl:gap-20">
-            <Link href="/#about"   onClick={handleInPage("about")}   className={baseNav}>About</Link>
-            <Link href="/#projects" onClick={handleInPage("projects")} className={baseNav}>Projects</Link>
-            <Link href="/our-team"                              className={navClass("/our-team")}>Team</Link>
-            {/* If you want Impact back in the row, uncomment: */}
-            {/* <Link href="/#impact" onClick={handleInPage("impact")} className={baseNav}>Impact</Link> */}
-            <Link href="/#contact" onClick={handleInPage("contact")} className={baseNav}>Contact</Link>
+            {/* Our Story + submenu (Team) */}
+            <div className="relative group">
+              <Link
+                href="/#about"
+                onClick={handleInPage("about")}
+                className={`${baseNav} inline-flex items-center gap-1`}
+              >
+                Our Story
+                <ChevronDown className="w-4 h-4 opacity-60 group-hover:opacity-100 transition" />
+              </Link>
+
+              {/* Dropdown */}
+              <div
+                className="
+                  pointer-events-none absolute left-0 mt-2 w-44 rounded-xl border border-border
+                  bg-background shadow-lg opacity-0 translate-y-1 transition
+                  group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto
+                  group-focus-within:opacity-100 group-focus-within:translate-y-0 group-focus-within:pointer-events-auto
+                "
+              >
+                <Link
+                  href="/our-team"
+                  className="block px-4 py-2 text-sm hover:bg-muted/60 rounded-xl"
+                >
+                  Team
+                </Link>
+              </div>
+            </div>
+
+            <Link href="/#projects" onClick={handleInPage("projects")} className={baseNav}>
+              Projects
+            </Link>
+
+            <Link href="/#contact" onClick={handleInPage("contact")} className={baseNav}>
+              Contact
+            </Link>
           </nav>
 
           {/* Desktop CTA */}
@@ -91,7 +120,9 @@ export function Header() {
               size="sm"
               className="btn-caps cursor-pointer h-11 px-6 text-[1rem] bg-primary hover:bg-primary/90 text-primary-foreground font-semibold"
             >
-              <Link href="/#donate" onClick={handleInPage("donate")}>Donate Now</Link>
+              <Link href="/#donate" onClick={handleInPage("donate")}>
+                Donate Now
+              </Link>
             </Button>
           </div>
 
@@ -109,19 +140,35 @@ export function Header() {
         {/* Mobile menu */}
         {isMenuOpen && (
           <div className="md:hidden py-4 border-t border-border">
-            <nav className="flex flex-col space-y-5 text-[1.125rem]">
-              <Link href="/#about"    onClick={handleInPage("about")}    className={baseNav}>Our Story</Link>
-              <Link href="/#projects" onClick={handleInPage("projects")} className={baseNav}>Projects</Link>
-              <Link href="/our-team"  onClick={() => setIsMenuOpen(false)} className={navClass("/our-team")}>Team</Link>
-              {/* <Link href="/#impact"   onClick={handleInPage("impact")}   className={baseNav}>Impact</Link> */}
-              <Link href="/#contact"  onClick={handleInPage("contact")}  className={baseNav}>Contact</Link>
+            <nav className="flex flex-col space-y-4 text-[1.125rem]">
+              <Link href="/#about" onClick={handleInPage("about")} className={baseNav}>
+                Our Story
+              </Link>
+              {/* Sub-item under About */}
+              <Link
+                href="/our-team"
+                className="pl-4 text-[1.05rem] opacity-80 hover:opacity-100 hover:text-foreground transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Team
+              </Link>
+
+              <Link href="/#projects" onClick={handleInPage("projects")} className={baseNav}>
+                Projects
+              </Link>
+
+              <Link href="/#contact" onClick={handleInPage("contact")} className={baseNav}>
+                Contact
+              </Link>
 
               <Button
                 asChild
                 size="sm"
                 className="btn-caps mt-2 w-fit h-11 px-6 text-[1rem] bg-primary hover:bg-primary/90 text-primary-foreground font-semibold cursor-pointer"
               >
-                <Link href="/#donate" onClick={handleInPage("donate")}>Donate Now</Link>
+                <Link href="/#donate" onClick={handleInPage("donate")}>
+                  Donate Now
+                </Link>
               </Button>
             </nav>
           </div>
