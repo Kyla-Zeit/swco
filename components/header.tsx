@@ -82,7 +82,7 @@ export function Header() {
                 onClick={handleInPage("about")}
                 className={`${baseNav} inline-flex items-center gap-1`}
               >
-                Our Story
+                About
                 <ChevronDown className="w-4 h-4 opacity-60 group-hover:opacity-100 transition" />
               </Link>
 
@@ -142,7 +142,7 @@ export function Header() {
           <div className="md:hidden py-4 border-t border-border">
             <nav className="flex flex-col space-y-4 text-[1.125rem]">
               <Link href="/#about" onClick={handleInPage("about")} className={baseNav}>
-                Our Story
+                About
               </Link>
               {/* Sub-item under About */}
               <Link
