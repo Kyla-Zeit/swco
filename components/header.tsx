@@ -38,17 +38,20 @@ export function Header() {
       }
     };
 
-  // If already on home, clicking the logo just scrolls to top smoothly
-  const handleLogoClick = useCallback(
-    (e: React.MouseEvent<HTMLAnchorElement>) => {
-      if (pathname === "/") {
-        e.preventDefault();
-        window.scrollTo({ top: 0, behavior: "smooth" });
-        history.replaceState(null, "", "/");
-      }
-    },
-    [pathname]
-  );
+// If already on home, clicking the logo just scrolls to top smoothly
+const handleLogoClick = useCallback(
+  (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (pathname === "/") {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      // Keep the current base path (e.g. /swco/) and just remove any #hash
+      const url = window.location.pathname + window.location.search;
+      history.replaceState(null, "", url);
+    }
+  },
+  [pathname]
+);
+
 
   // Submenu item base style (desktop)
   const subItemBase =
