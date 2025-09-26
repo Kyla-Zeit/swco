@@ -99,7 +99,7 @@ export function Header() {
                   href="/our-team"
                   className="block px-4 py-2 text-sm hover:bg-muted/60 rounded-xl"
                 >
-                  Team
+                  Meet The Team
                 </Link>
               </div>
             </div>
@@ -150,7 +150,7 @@ export function Header() {
                 className="pl-4 text-[1.05rem] opacity-80 hover:opacity-100 hover:text-foreground transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Team
+                Meet The Team
               </Link>
 
               <Link href="/#projects" onClick={handleInPage("projects")} className={baseNav}>
