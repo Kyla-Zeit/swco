@@ -102,8 +102,8 @@ export function Header() {
                   Meet The Team
                 </Link>
                 <Link
-                  href="/#community-voices"
-                  onClick={handleInPage("community-voices")}
+                  href="/testimonials"
+                  onClick={handleInPage("testimonials")}
                   className="block px-4 py-2 text-sm hover:bg-muted/60 rounded-xl"
                 >
                   Testimonials
@@ -160,8 +160,8 @@ export function Header() {
                 Meet The Team
               </Link>
               <Link
-                href="/#community-voices"
-                onClick={handleInPage("community-voices")}
+                href="/#testimonials"
+                onClick={handleInPage("testimonials")}
                 className="pl-4 text-[1.05rem] opacity-80 hover:opacity-100 hover:text-foreground transition-colors"
               >
                 Testimonials
