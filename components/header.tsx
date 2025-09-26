@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, Users, Quote } from "lucide-react";
 import logo from "@/public/logo.webp";
 
 export function Header() {
@@ -24,7 +24,6 @@ export function Header() {
     const el = document.getElementById(id);
     if (el) {
       el.scrollIntoView({ behavior: "smooth", block: "start" });
-      // update hash without jump
       history.replaceState(null, "", `/#${id}`);
     }
   }, []);
@@ -51,6 +50,10 @@ export function Header() {
     [pathname]
   );
 
+  // Submenu item base style (desktop)
+  const subItemBase =
+    "flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-foreground/90 hover:bg-muted/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 transition";
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -76,41 +79,52 @@ export function Header() {
 
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-12 lg:gap-16 xl:gap-20">
-            {/* About + submenu */}
+            {/* About + modern dropdown */}
             <div className="relative group">
               <Link
                 href="/#about"
                 onClick={handleInPage("about")}
                 className={`${baseNav} inline-flex items-center gap-1`}
+                aria-haspopup="true"
+                aria-expanded="false"
               >
                 About
-                <ChevronDown className="w-4 h-4 opacity-60 group-hover:opacity-100 transition" />
+                <ChevronDown className="w-4 h-4 opacity-60 transition-transform group-hover:rotate-180" />
               </Link>
 
-              {/* Dropdown wrapper: no dead-gap (top-full), with pt-2 for visual spacing */}
+              {/* Dropdown (no dead gap; glassy panel + soft shadow + top accent line) */}
               <div
                 className="
-                  absolute left-0 top-full w-44 pt-2 z-50
-                  opacity-0 translate-y-1 pointer-events-none transition
+                  absolute left-0 top-full w-56 pt-3 z-50
+                  opacity-0 translate-y-1 pointer-events-none
+                  transition duration-150 ease-out
                   group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto
                   group-focus-within:opacity-100 group-focus-within:translate-y-0 group-focus-within:pointer-events-auto
                 "
+                role="menu"
               >
-                {/* Panel */}
-                <div className="rounded-xl border border-border bg-background shadow-lg overflow-hidden">
-                  <Link
-                    href="/our-team"
-                    className="block px-4 py-2 text-sm hover:bg-muted/60"
-                  >
-                    Meet The Team
-                  </Link>
-                  <Link
-                    href="/#testimonials"
-                    onClick={handleInPage("testimonials")}
-                    className="block px-4 py-2 text-sm hover:bg-muted/60"
-                  >
-                    Testimonials
-                  </Link>
+                <div className="relative rounded-2xl border border-border/70 bg-background/95 backdrop-blur-md shadow-2xl">
+                  {/* subtle top gradient accent */}
+                  <div className="absolute left-3 right-3 -top-px h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+                  <div className="p-2">
+                    <Link
+                      href="/our-team"
+                      className={`${subItemBase} ${pathname === "/our-team" ? "bg-muted/70" : ""}`}
+                      role="menuitem"
+                    >
+                      <Users className="w-4 h-4 opacity-80" />
+                      <span>Meet The Team</span>
+                    </Link>
+                    <Link
+                      href="/#community-voices"
+                      onClick={handleInPage("community-voices")}
+                      className={subItemBase}
+                      role="menuitem"
+                    >
+                      <Quote className="w-4 h-4 opacity-80" />
+                      <span>Testimonials</span>
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
@@ -177,14 +191,18 @@ export function Header() {
                 className="pl-4 text-[1.05rem] opacity-80 hover:opacity-100 hover:text-foreground transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Meet The Team
+                <span className="inline-flex items-center gap-2">
+                  <Users className="w-4 h-4" /> Meet The Team
+                </span>
               </Link>
               <Link
-                href="/#testimonials"
-                onClick={handleInPage("testimonials")}
+                href="/#community-voices"
+                onClick={handleInPage("community-voices")}
                 className="pl-4 text-[1.05rem] opacity-80 hover:opacity-100 hover:text-foreground transition-colors"
               >
-                Testimonials
+                <span className="inline-flex items-center gap-2">
+                  <Quote className="w-4 h-4" /> Testimonials
+                </span>
               </Link>
 
               <Link
