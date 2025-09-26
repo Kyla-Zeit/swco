@@ -75,7 +75,7 @@ export function Header() {
 
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-12 lg:gap-16 xl:gap-20">
-            {/* Our Story + submenu (Team) */}
+            {/* About + submenu */}
             <div className="relative group">
               <Link
                 href="/#about"
@@ -100,6 +100,13 @@ export function Header() {
                   className="block px-4 py-2 text-sm hover:bg-muted/60 rounded-xl"
                 >
                   Meet The Team
+                </Link>
+                <Link
+                  href="/#testimonials"
+                  onClick={handleInPage("testimonials")}
+                  className="block px-4 py-2 text-sm hover:bg-muted/60 rounded-xl"
+                >
+                  Community Voices
                 </Link>
               </div>
             </div>
@@ -144,13 +151,20 @@ export function Header() {
               <Link href="/#about" onClick={handleInPage("about")} className={baseNav}>
                 About
               </Link>
-              {/* Sub-item under About */}
+              {/* Sub-items under About */}
               <Link
                 href="/our-team"
                 className="pl-4 text-[1.05rem] opacity-80 hover:opacity-100 hover:text-foreground transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Meet The Team
+              </Link>
+              <Link
+                href="/#testimonials"
+                onClick={handleInPage("testimonials")}
+                className="pl-4 text-[1.05rem] opacity-80 hover:opacity-100 hover:text-foreground transition-colors"
+              >
+                Community Voices
               </Link>
 
               <Link href="/#projects" onClick={handleInPage("projects")} className={baseNav}>
