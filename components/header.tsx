@@ -1,6 +1,7 @@
+// components/header.tsx
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useRef, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -9,8 +10,25 @@ import { Menu, X, ChevronDown, Users, Quote } from "lucide-react";
 import logo from "@/public/logo.webp";
 
 export function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
+
+  // mobile menu
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  // desktop "About" dropdown
+  const [aboutOpen, setAboutOpen] = useState(false);
+  const aboutTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const openAbout = useCallback(() => {
+    if (aboutTimer.current) clearTimeout(aboutTimer.current);
+    setAboutOpen(true);
+  }, []);
+
+  const closeAbout = useCallback(() => {
+    // small grace so tiny gaps don't close it instantly
+    if (aboutTimer.current) clearTimeout(aboutTimer.current);
+    aboutTimer.current = setTimeout(() => setAboutOpen(false), 120);
+  }, []);
 
   const baseNav =
     "nav-link text-[1.125rem] lg:text-[1.2rem] font-medium tracking-[0.02em] opacity-80 hover:opacity-100 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 transition-colors";
@@ -18,33 +36,32 @@ export function Header() {
   const navClass = (href: string) =>
     pathname === href ? `${baseNav} opacity-100 text-foreground` : baseNav;
 
-  // Smooth-scroll helper (home page only)
+  // Smooth-scroll helper for sections on the home page
   const scrollToId = useCallback((id: string) => {
     const el = document.getElementById(id);
     if (el) {
       el.scrollIntoView({ behavior: "smooth", block: "start" });
-      // keep current path (/swco) – just update the hash
-      history.replaceState(null, "", `#${id}`);
+      // keep the hash in the URL without a jump
+      history.replaceState(null, "", `/#${id}`);
     }
   }, []);
 
-  // Intercept hash links only on home page
-  const handleInPage = (id: string) =>
-    (e: React.MouseEvent<HTMLAnchorElement>) => {
-      if (pathname === "/") {
-        e.preventDefault();
-        scrollToId(id);
-        setIsMenuOpen(false);
-      }
-    };
+  // Intercept only when already on "/"
+  const handleInPage = (id: string) => (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (pathname === "/") {
+      e.preventDefault();
+      scrollToId(id);
+      setIsMenuOpen(false);
+    }
+  };
 
-  // Logo: on home → smooth scroll; on other pages → normal link
+  // Logo behavior: smooth scroll to top when already on "/"
   const handleLogoClick = useCallback(
     (e: React.MouseEvent<HTMLAnchorElement>) => {
       if (pathname === "/") {
         e.preventDefault();
         window.scrollTo({ top: 0, behavior: "smooth" });
-        // do not touch history here so /swco is preserved
+        history.replaceState(null, "", "/");
       }
     },
     [pathname]
@@ -58,7 +75,7 @@ export function Header() {
           <Link
             href="/"
             onClick={handleLogoClick}
-            className="flex items-center gap-3 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
+            className="flex items-center gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
           >
             <Image
               src={logo}
@@ -75,52 +92,67 @@ export function Header() {
 
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-12 lg:gap-16 xl:gap-20">
-            {/* About + submenu */}
-            <div className="relative group">
+            {/* About (keeps menu open while hovering anywhere over trigger+menu) */}
+            <div
+              className="relative"
+              onMouseEnter={openAbout}
+              onMouseLeave={closeAbout}
+              onFocusCapture={openAbout}
+              onBlurCapture={closeAbout}
+            >
               <Link
                 href="/#about"
                 onClick={handleInPage("about")}
                 className={`${baseNav} inline-flex items-center gap-1`}
+                aria-expanded={aboutOpen}
+                aria-haspopup="menu"
               >
                 About
-                <ChevronDown className="w-4 h-4 opacity-60 group-hover:opacity-100 transition" />
+                <ChevronDown className={`w-4 h-4 transition ${aboutOpen ? "opacity-100 rotate-180" : "opacity-60"}`} />
               </Link>
 
-              {/* Dropdown (flat corners per your request) */}
+              {/* Dropdown */}
               <div
-                className="
-                  pointer-events-none absolute left-0 mt-2 w-64 border border-border
-                  bg-background shadow-lg opacity-0 translate-y-1 transition
-                  group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto
-                  group-focus-within:opacity-100 group-focus-within:translate-y-0 group-focus-within:pointer-events-auto
-                "
+                className={`absolute left-0 top-full z-50 w-72 border border-border bg-background shadow-xl
+                            rounded-none transition origin-top
+                            ${aboutOpen ? "pointer-events-auto opacity-100 translate-y-0" : "pointer-events-none opacity-0 -translate-y-1"}`}
+                role="menu"
               >
-                <Link
-                  href="/our-team"
-                  className="flex items-start gap-3 px-4 py-3 text-sm hover:bg-muted/60"
-                >
-                  <Users className="w-4 h-4 mt-[2px] opacity-70" />
-                  <span>
-                    <div className="font-medium">Meet The Team</div>
-                    <div className="text-xs opacity-70">Leadership &amp; board</div>
-                  </span>
-                </Link>
+                {/* top accent */}
+                <div className="h-[3px] w-full bg-gradient-to-r from-primary via-emerald-400 to-primary" />
 
-                <Link
-                  href="/#community-voices"
-                  onClick={handleInPage("community-voices")}
-                  className="flex items-start gap-3 px-4 py-3 text-sm hover:bg-muted/60"
-                >
-                  <Quote className="w-4 h-4 mt-[2px] opacity-70" />
-                  <span>
-                    <div className="font-medium">Testimonials</div>
-                    <div className="text-xs opacity-70">Community voices</div>
-                  </span>
-                </Link>
+                <ul className="p-2">
+                  <li>
+                    <Link
+                      href="/our-team"
+                      className="flex items-start gap-3 px-3 py-3 rounded-none hover:bg-muted/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+                      role="menuitem"
+                    >
+                      <Users className="mt-[2px] h-5 w-5 opacity-80" />
+                      <span className="leading-tight">
+                        <span className="font-medium">Meet The Team</span>
+                        <br />
+                        <span className="text-sm text-muted-foreground">Leadership &amp; board</span>
+                      </span>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/#community-voices"
+                      onClick={handleInPage("community-voices")}
+                      className="flex items-start gap-3 px-3 py-3 rounded-none hover:bg-muted/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+                      role="menuitem"
+                    >
+                      <Quote className="mt-[2px] h-5 w-5 opacity-80" />
+                      <span className="leading-tight">
+                        <span className="font-medium">Testimonials</span>
+                        <br />
+                        <span className="text-sm text-muted-foreground">Community voices</span>
+                      </span>
+                    </Link>
+                  </li>
+                </ul>
               </div>
-
-              {/* top border accent */}
-              <div className="absolute inset-x-0 -top-[10px] h-[3px] bg-primary/70 opacity-0 group-hover:opacity-100 transition" />
             </div>
 
             <Link href="/#projects" onClick={handleInPage("projects")} className={baseNav}>
@@ -141,7 +173,7 @@ export function Header() {
             <Button
               asChild
               size="sm"
-              className="btn-caps cursor-pointer h-11 px-6 text-[1rem] bg-primary hover:bg-primary/90 text-primary-foreground font-semibold rounded-none"
+              className="btn-caps h-11 px-6 text-[1rem] bg-primary hover:bg-primary/90 text-primary-foreground font-semibold rounded-none cursor-pointer"
             >
               <Link href="/#donate" onClick={handleInPage("donate")}>
                 Donate Now
@@ -151,7 +183,7 @@ export function Header() {
 
           {/* Mobile toggle */}
           <button
-            className="md:hidden p-2 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
+            className="md:hidden p-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
             onClick={() => setIsMenuOpen((v) => !v)}
             aria-label="Toggle menu"
             aria-expanded={isMenuOpen}
@@ -167,7 +199,7 @@ export function Header() {
               <Link href="/#about" onClick={handleInPage("about")} className={baseNav}>
                 About
               </Link>
-
+              {/* sub-items under About */}
               <Link
                 href="/our-team"
                 className="pl-4 text-[1.05rem] opacity-80 hover:opacity-100 hover:text-foreground transition-colors"
@@ -175,7 +207,6 @@ export function Header() {
               >
                 Meet The Team
               </Link>
-
               <Link
                 href="/#community-voices"
                 onClick={handleInPage("community-voices")}
@@ -199,7 +230,7 @@ export function Header() {
               <Button
                 asChild
                 size="sm"
-                className="btn-caps mt-2 w-fit h-11 px-6 text-[1rem] bg-primary hover:bg-primary/90 text-primary-foreground font-semibold cursor-pointer rounded-none"
+                className="btn-caps mt-2 w-fit h-11 px-6 text-[1rem] bg-primary hover:bg-primary/90 text-primary-foreground font-semibold rounded-none cursor-pointer"
               >
                 <Link href="/#donate" onClick={handleInPage("donate")}>
                   Donate Now
