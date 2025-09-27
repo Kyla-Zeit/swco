@@ -85,13 +85,14 @@ export function Header() {
               </Link>
 
               {/* Animated panel wrapper */}
-              <div
-                className="
-                  pointer-events-none absolute left-0 mt-3 w-[280px] origin-top-left
-                  scale-95 opacity-0 transition duration-200
-                  group-hover:opacity-100 group-hover:scale-100 group-hover:pointer-events-auto
-                "
-              >
+<div
+  className="
+    pointer-events-none absolute left-0 top-full w-[280px] pt-2 origin-top-left
+    scale-95 opacity-0 transition duration-200 z-50
+    group-hover:opacity-100 group-hover:scale-100 group-hover:pointer-events-auto
+  "
+>
+
                 {/* Panel */}
                 <div className="rounded-[0px] border border-border/70 bg-background/95 backdrop-blur-md shadow-[0_12px_40px_rgba(0,0,0,0.10)]">
                   {/* Thin accent bar */}
