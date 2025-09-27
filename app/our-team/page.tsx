@@ -3,6 +3,9 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Mail, Linkedin, Globe } from "lucide-react";
+// If you already have this helper (used in your header), keep this import:
+// It should return the correct href with base path (e.g. "/swco")
+import { withBase } from "@/lib/withBase";
 
 // ---------- page meta ----------
 export const metadata: Metadata = {
@@ -22,7 +25,7 @@ type TeamMember = {
   website?: string;
 };
 
-// ---------- data (edit freely) ----------
+// ---------- data ----------
 const leadership: TeamMember[] = [
   {
     name: "Ayan Dualeh",
@@ -96,7 +99,7 @@ function TeamCard({ m }: { m: TeamMember }) {
             {m.email && (
               <a
                 href={`mailto:${m.email}`}
-                className="inline-flex h-9 w-9 items-center justify-center rounded-none
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full
                            border border-border text-foreground/80 hover:text-primary
                            hover:border-primary/50 transition focus-visible:outline-none
                            focus-visible:ring-2 focus-visible:ring-primary/50"
@@ -110,7 +113,7 @@ function TeamCard({ m }: { m: TeamMember }) {
                 href={m.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex h-9 w-9 items-center justify-center rounded-none
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full
                            border border-border text-foreground/80 hover:text-primary
                            hover:border-primary/50 transition focus-visible:outline-none
                            focus-visible:ring-2 focus-visible:ring-primary/50"
@@ -124,7 +127,7 @@ function TeamCard({ m }: { m: TeamMember }) {
                 href={m.website}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex h-9 w-9 items-center justify-center rounded-none
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full
                            border border-border text-foreground/80 hover:text-primary
                            hover:border-primary/50 transition focus-visible:outline-none
                            focus-visible:ring-2 focus-visible:ring-primary/50"
@@ -185,7 +188,7 @@ export default function TeamPage() {
         </p>
       </div>
 
-      {/* Leadership (no title shown) */}
+      {/* People */}
       <Section people={leadership} />
 
       {/* CTA */}
@@ -196,17 +199,26 @@ export default function TeamPage() {
           community organizers.
         </p>
         <div className="mt-4 flex items-center justify-center gap-3">
-          <Link
-            href="/#contact"
-            className="btn-caps inline-flex items-center rounded-none bg-primary px-5 py-2.5 text-primary-foreground
-                       font-semibold tracking-wide hover:bg-primary/90 focus-visible:outline-none
+          {/* Get in touch: scroll to footer contact on this page */}
+          <button
+            type="button"
+            onClick={() =>
+              document
+                .getElementById("contact")
+                ?.scrollIntoView({ behavior: "smooth", block: "start" })
+            }
+            className="btn-caps inline-flex items-center bg-primary px-5 py-2.5
+                       text-primary-foreground font-semibold tracking-wide
+                       hover:bg-primary/90 focus-visible:outline-none
                        focus-visible:ring-2 focus-visible:ring-primary/50"
           >
             Get in touch
-          </Link>
+          </button>
+
+          {/* Donate: go to Donate section on the home page */}
           <Link
-            href="/#donate"
-            className="btn-caps inline-flex items-center rounded-none border border-primary/30 px-5 py-2.5
+            href={withBase("/#donate")}
+            className="btn-caps inline-flex items-center border border-primary/30 px-5 py-2.5
                        text-foreground font-semibold tracking-wide hover:border-primary/60
                        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
           >
