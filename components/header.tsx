@@ -29,33 +29,25 @@ export function Header() {
   }, []);
 
   // Intercept in-page links only when we're already on "/"
-  const handleInPage =
-    (id: string) => (e: React.MouseEvent<HTMLAnchorElement>) => {
-      if (pathname === "/") {
-        e.preventDefault();
-        scrollToId(id);
-        setIsMenuOpen(false);
-      }
-    };
-
-// If already on home, clicking the logo just scrolls to top smoothly
-const handleLogoClick = useCallback(
-  (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleInPage = (id: string) => (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (pathname === "/") {
       e.preventDefault();
-      window.scrollTo({ top: 0, behavior: "smooth" });
-      // Keep the current base path (e.g. /swco/) and just remove any #hash
-      const url = window.location.pathname + window.location.search;
-      history.replaceState(null, "", url);
+      scrollToId(id);
+      setIsMenuOpen(false);
     }
-  },
-  [pathname]
-);
+  };
 
-
-  // Submenu item base style (desktop)
-  const subItemBase =
-    "flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-foreground/90 hover:bg-muted/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 transition";
+  // If already on home, clicking the logo just scrolls to top smoothly
+  const handleLogoClick = useCallback(
+    (e: React.MouseEvent<HTMLAnchorElement>) => {
+      if (pathname === "/") {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        history.replaceState(null, "", "/");
+      }
+    },
+    [pathname]
+  );
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
@@ -65,7 +57,7 @@ const handleLogoClick = useCallback(
           <Link
             href="/"
             onClick={handleLogoClick}
-            className="flex items-center gap-3 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
+            className="flex items-center gap-3 rounded-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
           >
             <Image
               src={logo}
@@ -82,79 +74,59 @@ const handleLogoClick = useCallback(
 
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-12 lg:gap-16 xl:gap-20">
-            {/* About + modern dropdown */}
+            {/* About + submenu (square panel & items) */}
             <div className="relative group">
               <Link
                 href="/#about"
                 onClick={handleInPage("about")}
                 className={`${baseNav} inline-flex items-center gap-1`}
-                aria-haspopup="true"
-                aria-expanded="false"
               >
                 About
-                <ChevronDown className="w-4 h-4 opacity-60 transition-transform group-hover:rotate-180" />
+                <ChevronDown className="w-4 h-4 opacity-60 group-hover:opacity-100 transition" />
               </Link>
 
-              {/* Dropdown (no dead gap; glassy panel + soft shadow + top accent line) */}
+              {/* Dropdown (now squared) */}
               <div
                 className="
-                  absolute left-0 top-full w-56 pt-3 z-50
-                  opacity-0 translate-y-1 pointer-events-none
-                  transition duration-150 ease-out
+                  pointer-events-none absolute left-0 mt-2 w-56 rounded-none border border-border
+                  bg-background shadow-lg opacity-0 translate-y-1 transition
                   group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto
                   group-focus-within:opacity-100 group-focus-within:translate-y-0 group-focus-within:pointer-events-auto
                 "
-                role="menu"
               >
-                <div className="relative rounded-2xl border border-border/70 bg-background/95 backdrop-blur-md shadow-2xl">
-                  {/* subtle top gradient accent */}
-                  <div className="absolute left-3 right-3 -top-px h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
-                  <div className="p-2">
-                    <Link
-                      href="/our-team"
-                      className={`${subItemBase} ${pathname === "/our-team" ? "bg-muted/70" : ""}`}
-                      role="menuitem"
-                    >
-                      <Users className="w-4 h-4 opacity-80" />
-                      <span>Meet The Team</span>
-                    </Link>
-                    <Link
-                      href="/#community-voices"
-                      onClick={handleInPage("community-voices")}
-                      className={subItemBase}
-                      role="menuitem"
-                    >
-                      <Quote className="w-4 h-4 opacity-80" />
-                      <span>Testimonials</span>
-                    </Link>
-                  </div>
-                </div>
+                <Link
+                  href="/our-team"
+                  className="flex items-center gap-3 px-4 py-2 text-sm hover:bg-muted/60 rounded-none"
+                >
+                  <Users className="w-4 h-4 opacity-70" />
+                  <span>Meet The Team</span>
+                </Link>
+                <Link
+                  href="/#community-voices"
+                  onClick={handleInPage("community-voices")}
+                  className="flex items-center gap-3 px-4 py-2 text-sm hover:bg-muted/60 rounded-none"
+                >
+                  <Quote className="w-4 h-4 opacity-70" />
+                  <span>Testimonials</span>
+                </Link>
               </div>
             </div>
 
-            <Link
-              href="/#projects"
-              onClick={handleInPage("projects")}
-              className={baseNav}
-            >
+            <Link href="/#projects" onClick={handleInPage("projects")} className={baseNav}>
               Projects
             </Link>
 
-            <Link
-              href="/#contact"
-              onClick={handleInPage("contact")}
-              className={baseNav}
-            >
+            <Link href="/#contact" onClick={handleInPage("contact")} className={baseNav}>
               Contact
             </Link>
           </nav>
 
-          {/* Desktop CTA */}
+          {/* Desktop CTA (square) */}
           <div className="hidden md:flex">
             <Button
               asChild
               size="sm"
-        className="btn-caps cursor-pointer h-11 px-6 text-[1rem] bg-primary hover:bg-primary/90 text-primary-foreground font-semibold rounded-none"
+              className="btn-caps cursor-pointer h-11 px-6 text-[1rem] bg-primary hover:bg-primary/90 text-primary-foreground font-semibold rounded-none"
             >
               <Link href="/#donate" onClick={handleInPage("donate")}>
                 Donate Now
@@ -164,16 +136,12 @@ const handleLogoClick = useCallback(
 
           {/* Mobile toggle */}
           <button
-            className="md:hidden p-2 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
+            className="md:hidden p-2 rounded-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
             onClick={() => setIsMenuOpen((v) => !v)}
             aria-label="Toggle menu"
             aria-expanded={isMenuOpen}
           >
-            {isMenuOpen ? (
-              <X className="w-6 h-6 text-foreground" />
-            ) : (
-              <Menu className="w-6 h-6 text-foreground" />
-            )}
+            {isMenuOpen ? <X className="w-6 h-6 text-foreground" /> : <Menu className="w-6 h-6 text-foreground" />}
           </button>
         </div>
 
@@ -181,53 +149,37 @@ const handleLogoClick = useCallback(
         {isMenuOpen && (
           <div className="md:hidden py-4 border-t border-border">
             <nav className="flex flex-col space-y-4 text-[1.125rem]">
-              <Link
-                href="/#about"
-                onClick={handleInPage("about")}
-                className={baseNav}
-              >
+              <Link href="/#about" onClick={handleInPage("about")} className={baseNav}>
                 About
               </Link>
-              {/* Sub-items under About */}
+              {/* Sub-items under About (mobile) */}
               <Link
                 href="/our-team"
                 className="pl-4 text-[1.05rem] opacity-80 hover:opacity-100 hover:text-foreground transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
-                <span className="inline-flex items-center gap-2">
-                  <Users className="w-4 h-4" /> Meet The Team
-                </span>
+                Meet The Team
               </Link>
               <Link
                 href="/#community-voices"
                 onClick={handleInPage("community-voices")}
                 className="pl-4 text-[1.05rem] opacity-80 hover:opacity-100 hover:text-foreground transition-colors"
               >
-                <span className="inline-flex items-center gap-2">
-                  <Quote className="w-4 h-4" /> Testimonials
-                </span>
+                Testimonials
               </Link>
 
-              <Link
-                href="/#projects"
-                onClick={handleInPage("projects")}
-                className={baseNav}
-              >
+              <Link href="/#projects" onClick={handleInPage("projects")} className={baseNav}>
                 Projects
               </Link>
 
-              <Link
-                href="/#contact"
-                onClick={handleInPage("contact")}
-                className={baseNav}
-              >
+              <Link href="/#contact" onClick={handleInPage("contact")} className={baseNav}>
                 Contact
               </Link>
 
               <Button
                 asChild
                 size="sm"
-                className="btn-caps mt-2 w-fit h-11 px-6 text-[1rem] bg-primary hover:bg-primary/90 text-primary-foreground font-semibold cursor-pointer"
+                className="btn-caps mt-2 w-fit h-11 px-6 text-[1rem] bg-primary hover:bg-primary/90 text-primary-foreground font-semibold cursor-pointer rounded-none"
               >
                 <Link href="/#donate" onClick={handleInPage("donate")}>
                   Donate Now
