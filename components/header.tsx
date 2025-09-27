@@ -73,7 +73,7 @@ export function Header() {
 
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-12 lg:gap-16 xl:gap-20">
-            {/* About + dropdown (forced square) */}
+            {/* About + dropdown (modern, square) */}
             <div className="relative group">
               <Link
                 href="/#about"
@@ -81,33 +81,54 @@ export function Header() {
                 className={`${baseNav} inline-flex items-center gap-1`}
               >
                 About
-                <ChevronDown className="w-4 h-4 opacity-60 group-hover:opacity-100 transition" />
+                <ChevronDown className="w-4 h-4 opacity-60 transition group-hover:opacity-100 group-hover:-rotate-180" />
               </Link>
 
-              {/* Dropdown panel */}
+              {/* Animated panel wrapper */}
               <div
                 className="
-                  pointer-events-none absolute left-0 mt-2 w-56 rounded-[0px] border border-border
-                  bg-background shadow-lg opacity-0 translate-y-1 transition
-                  group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto
-                  group-focus-within:opacity-100 group-focus-within:translate-y-0 group-focus-within:pointer-events-auto
+                  pointer-events-none absolute left-0 mt-3 w-[280px] origin-top-left
+                  scale-95 opacity-0 transition duration-200
+                  group-hover:opacity-100 group-hover:scale-100 group-hover:pointer-events-auto
                 "
               >
-                <Link
-                  href="/our-team"
-                  className="flex items-center gap-3 px-4 py-2 text-sm hover:bg-muted/60 rounded-[0px]"
-                >
-                  <Users className="w-4 h-4 opacity-70" />
-                  <span>Meet The Team</span>
-                </Link>
-                <Link
-                  href="/#community-voices"
-                  onClick={handleInPage("community-voices")}
-                  className="flex items-center gap-3 px-4 py-2 text-sm hover:bg-muted/60 rounded-[0px]"
-                >
-                  <Quote className="w-4 h-4 opacity-70" />
-                  <span>Testimonials</span>
-                </Link>
+                {/* Panel */}
+                <div className="rounded-[0px] border border-border/70 bg-background/95 backdrop-blur-md shadow-[0_12px_40px_rgba(0,0,0,0.10)]">
+                  {/* Thin accent bar */}
+                  <div className="h-[3px] bg-gradient-to-r from-primary via-emerald-400 to-primary" />
+
+                  {/* Items */}
+                  <Link
+                    href="/our-team"
+                    className="group/item flex items-start gap-3 px-4 py-3 hover:bg-muted/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 rounded-[0px]"
+                  >
+                    <div className="mt-0.5 grid h-7 w-7 place-items-center border border-border/60 bg-muted/30 text-foreground/70 rounded-[0px] transition group-hover/item:text-primary group-hover/item:border-primary/60">
+                      <Users className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <div className="text-sm font-medium leading-none">Meet The Team</div>
+                      <div className="mt-1 text-[12px] leading-tight text-muted-foreground">
+                        Leadership & board
+                      </div>
+                    </div>
+                  </Link>
+
+                  <Link
+                    href="/#community-voices"
+                    onClick={handleInPage("community-voices")}
+                    className="group/item flex items-start gap-3 px-4 py-3 hover:bg-muted/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 rounded-[0px]"
+                  >
+                    <div className="mt-0.5 grid h-7 w-7 place-items-center border border-border/60 bg-muted/30 text-foreground/70 rounded-[0px] transition group-hover/item:text-primary group-hover/item:border-primary/60">
+                      <Quote className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <div className="text-sm font-medium leading-none">Testimonials</div>
+                      <div className="mt-1 text-[12px] leading-tight text-muted-foreground">
+                        Community voices
+                      </div>
+                    </div>
+                  </Link>
+                </div>
               </div>
             </div>
 
@@ -115,7 +136,7 @@ export function Header() {
               Projects
             </Link>
 
-            {/* NEW: Events in nav, links to Upcoming Events */}
+            {/* Events in nav */}
             <Link href="/#events" onClick={handleInPage("events")} className={baseNav}>
               Events
             </Link>
@@ -174,11 +195,9 @@ export function Header() {
               <Link href="/#projects" onClick={handleInPage("projects")} className={baseNav}>
                 Projects
               </Link>
-              {/* NEW: Events (mobile) */}
               <Link href="/#events" onClick={handleInPage("events")} className={baseNav}>
                 Events
               </Link>
-
               <Link href="/#contact" onClick={handleInPage("contact")} className={baseNav}>
                 Contact
               </Link>
