@@ -154,7 +154,7 @@ const handleLogoClick = useCallback(
             <Button
               asChild
               size="sm"
-              className="btn-caps cursor-pointer h-11 px-6 text-[1rem] bg-primary hover:bg-primary/90 text-primary-foreground font-semibold"
+        className="btn-caps cursor-pointer h-11 px-6 text-[1rem] bg-primary hover:bg-primary/90 text-primary-foreground font-semibold rounded-none"
             >
               <Link href="/#donate" onClick={handleInPage("donate")}>
                 Donate Now
