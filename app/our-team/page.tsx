@@ -190,41 +190,39 @@ export default function TeamPage() {
       {/* People */}
       <Section people={leadership} />
 
-      {/* CTA */}
-      <div className="mt-16 rounded-2xl border border-border bg-card/60 p-6 text-center">
-        <h3 className="text-xl font-semibold">Want to support the mission?</h3>
-        <p className="mt-2 text-muted-foreground">
-          We collaborate with engineers, health practitioners, educators, and
-          community organizers.
-        </p>
-        <div className="mt-4 flex items-center justify-center gap-3">
-          {/* Get in touch: scroll to footer contact on this page */}
-          <button
-            type="button"
-            onClick={() =>
-              document
-                .getElementById("contact")
-                ?.scrollIntoView({ behavior: "smooth", block: "start" })
-            }
-            className="btn-caps inline-flex items-center bg-primary px-5 py-2.5
-                       text-primary-foreground font-semibold tracking-wide
-                       hover:bg-primary/90 focus-visible:outline-none
-                       focus-visible:ring-2 focus-visible:ring-primary/50"
-          >
-            Get in touch
-          </button>
+{/* CTA */}
+<div className="mt-16 border border-border bg-card/60 p-6 text-center">
+  <h3 className="text-xl font-semibold">Want to support the mission?</h3>
+  <p className="mt-2 text-muted-foreground">
+    We collaborate with engineers, health practitioners, educators, and
+    community organizers.
+  </p>
+  <div className="mt-4 flex items-center justify-center gap-3">
+    {/* Contact on the home page */}
+    <Link
+      href="/#contact"
+      className="btn-caps inline-flex items-center bg-primary px-5 py-2.5
+                 text-primary-foreground font-semibold tracking-wide
+                 hover:bg-primary/90 focus-visible:outline-none
+                 focus-visible:ring-2 focus-visible:ring-primary/50
+                 rounded-none"
+    >
+      Get in touch
+    </Link>
 
-          {/* Donate: go to Donate section on the home page */}
-          <Link
-            href={withBase("/#donate")}
-            className="btn-caps inline-flex items-center border border-primary/30 px-5 py-2.5
-                       text-foreground font-semibold tracking-wide hover:border-primary/60
-                       focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
-          >
-            Donate
-          </Link>
-        </div>
-      </div>
+    {/* Donate section on the home page */}
+    <Link
+      href="/#donate"
+      className="btn-caps inline-flex items-center border border-primary/30 px-5 py-2.5
+                 text-foreground font-semibold tracking-wide hover:border-primary/60
+                 focus-visible:outline-none focus-visible:ring-2
+                 focus-visible:ring-primary/50 rounded-none"
+    >
+      Donate
+    </Link>
+  </div>
+</div>
+
     </div>
   );
 }
