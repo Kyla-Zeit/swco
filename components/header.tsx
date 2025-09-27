@@ -1,4 +1,3 @@
-// components/header.tsx
 "use client";
 
 import { useState, useCallback } from "react";
@@ -19,17 +18,19 @@ export function Header() {
   const navClass = (href: string) =>
     pathname === href ? `${baseNav} opacity-100 text-foreground` : baseNav;
 
-  // smooth-scroll helper (home page only)
+  // Smooth-scroll helper (home page only)
   const scrollToId = useCallback((id: string) => {
     const el = document.getElementById(id);
     if (el) {
       el.scrollIntoView({ behavior: "smooth", block: "start" });
-      history.replaceState(null, "", `/#${id}`);
+      // keep current path (/swco) – just update the hash
+      history.replaceState(null, "", `#${id}`);
     }
   }, []);
 
-  const handleInPage =
-    (id: string) => (e: React.MouseEvent<HTMLAnchorElement>) => {
+  // Intercept hash links only on home page
+  const handleInPage = (id: string) =>
+    (e: React.MouseEvent<HTMLAnchorElement>) => {
       if (pathname === "/") {
         e.preventDefault();
         scrollToId(id);
@@ -37,12 +38,13 @@ export function Header() {
       }
     };
 
+  // Logo: on home → smooth scroll; on other pages → normal link
   const handleLogoClick = useCallback(
     (e: React.MouseEvent<HTMLAnchorElement>) => {
       if (pathname === "/") {
         e.preventDefault();
         window.scrollTo({ top: 0, behavior: "smooth" });
-        history.replaceState(null, "", "/");
+        // do not touch history here so /swco is preserved
       }
     },
     [pathname]
@@ -56,7 +58,7 @@ export function Header() {
           <Link
             href="/"
             onClick={handleLogoClick}
-            className="flex items-center gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
+            className="flex items-center gap-3 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
           >
             <Image
               src={logo}
@@ -73,7 +75,7 @@ export function Header() {
 
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-12 lg:gap-16 xl:gap-20">
-            {/* About + dropdown (modern, square) */}
+            {/* About + submenu */}
             <div className="relative group">
               <Link
                 href="/#about"
@@ -81,63 +83,50 @@ export function Header() {
                 className={`${baseNav} inline-flex items-center gap-1`}
               >
                 About
-                <ChevronDown className="w-4 h-4 opacity-60 transition group-hover:opacity-100 group-hover:-rotate-180" />
+                <ChevronDown className="w-4 h-4 opacity-60 group-hover:opacity-100 transition" />
               </Link>
 
-              {/* Animated panel wrapper */}
-<div
-  className="
-    pointer-events-none absolute left-0 top-full w-[280px] pt-2 origin-top-left
-    scale-95 opacity-0 transition duration-200 z-50
-    group-hover:opacity-100 group-hover:scale-100 group-hover:pointer-events-auto
-  "
->
+              {/* Dropdown (flat corners per your request) */}
+              <div
+                className="
+                  pointer-events-none absolute left-0 mt-2 w-64 border border-border
+                  bg-background shadow-lg opacity-0 translate-y-1 transition
+                  group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto
+                  group-focus-within:opacity-100 group-focus-within:translate-y-0 group-focus-within:pointer-events-auto
+                "
+              >
+                <Link
+                  href="/our-team"
+                  className="flex items-start gap-3 px-4 py-3 text-sm hover:bg-muted/60"
+                >
+                  <Users className="w-4 h-4 mt-[2px] opacity-70" />
+                  <span>
+                    <div className="font-medium">Meet The Team</div>
+                    <div className="text-xs opacity-70">Leadership &amp; board</div>
+                  </span>
+                </Link>
 
-                {/* Panel */}
-                <div className="rounded-[0px] border border-border/70 bg-background/95 backdrop-blur-md shadow-[0_12px_40px_rgba(0,0,0,0.10)]">
-                  {/* Thin accent bar */}
-                  <div className="h-[3px] bg-gradient-to-r from-primary via-emerald-400 to-primary" />
-
-                  {/* Items */}
-                  <Link
-                    href="/our-team"
-                    className="group/item flex items-start gap-3 px-4 py-3 hover:bg-muted/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 rounded-[0px]"
-                  >
-                    <div className="mt-0.5 grid h-7 w-7 place-items-center border border-border/60 bg-muted/30 text-foreground/70 rounded-[0px] transition group-hover/item:text-primary group-hover/item:border-primary/60">
-                      <Users className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <div className="text-sm font-medium leading-none">Meet The Team</div>
-                      <div className="mt-1 text-[12px] leading-tight text-muted-foreground">
-                        Leadership & board
-                      </div>
-                    </div>
-                  </Link>
-
-                  <Link
-                    href="/#community-voices"
-                    onClick={handleInPage("community-voices")}
-                    className="group/item flex items-start gap-3 px-4 py-3 hover:bg-muted/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 rounded-[0px]"
-                  >
-                    <div className="mt-0.5 grid h-7 w-7 place-items-center border border-border/60 bg-muted/30 text-foreground/70 rounded-[0px] transition group-hover/item:text-primary group-hover/item:border-primary/60">
-                      <Quote className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <div className="text-sm font-medium leading-none">Testimonials</div>
-                      <div className="mt-1 text-[12px] leading-tight text-muted-foreground">
-                        Community voices
-                      </div>
-                    </div>
-                  </Link>
-                </div>
+                <Link
+                  href="/#community-voices"
+                  onClick={handleInPage("community-voices")}
+                  className="flex items-start gap-3 px-4 py-3 text-sm hover:bg-muted/60"
+                >
+                  <Quote className="w-4 h-4 mt-[2px] opacity-70" />
+                  <span>
+                    <div className="font-medium">Testimonials</div>
+                    <div className="text-xs opacity-70">Community voices</div>
+                  </span>
+                </Link>
               </div>
+
+              {/* top border accent */}
+              <div className="absolute inset-x-0 -top-[10px] h-[3px] bg-primary/70 opacity-0 group-hover:opacity-100 transition" />
             </div>
 
             <Link href="/#projects" onClick={handleInPage("projects")} className={baseNav}>
               Projects
             </Link>
 
-            {/* Events in nav */}
             <Link href="/#events" onClick={handleInPage("events")} className={baseNav}>
               Events
             </Link>
@@ -147,12 +136,12 @@ export function Header() {
             </Link>
           </nav>
 
-          {/* Desktop CTA (square) */}
+          {/* Desktop CTA */}
           <div className="hidden md:flex">
             <Button
               asChild
               size="sm"
-              className="btn-caps cursor-pointer h-11 px-6 text-[1rem] bg-primary hover:bg-primary/90 text-primary-foreground font-semibold rounded-[0px]"
+              className="btn-caps cursor-pointer h-11 px-6 text-[1rem] bg-primary hover:bg-primary/90 text-primary-foreground font-semibold rounded-none"
             >
               <Link href="/#donate" onClick={handleInPage("donate")}>
                 Donate Now
@@ -162,7 +151,7 @@ export function Header() {
 
           {/* Mobile toggle */}
           <button
-            className="md:hidden p-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
+            className="md:hidden p-2 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
             onClick={() => setIsMenuOpen((v) => !v)}
             aria-label="Toggle menu"
             aria-expanded={isMenuOpen}
@@ -178,6 +167,7 @@ export function Header() {
               <Link href="/#about" onClick={handleInPage("about")} className={baseNav}>
                 About
               </Link>
+
               <Link
                 href="/our-team"
                 className="pl-4 text-[1.05rem] opacity-80 hover:opacity-100 hover:text-foreground transition-colors"
@@ -185,6 +175,7 @@ export function Header() {
               >
                 Meet The Team
               </Link>
+
               <Link
                 href="/#community-voices"
                 onClick={handleInPage("community-voices")}
@@ -196,9 +187,11 @@ export function Header() {
               <Link href="/#projects" onClick={handleInPage("projects")} className={baseNav}>
                 Projects
               </Link>
+
               <Link href="/#events" onClick={handleInPage("events")} className={baseNav}>
                 Events
               </Link>
+
               <Link href="/#contact" onClick={handleInPage("contact")} className={baseNav}>
                 Contact
               </Link>
@@ -206,7 +199,7 @@ export function Header() {
               <Button
                 asChild
                 size="sm"
-                className="btn-caps mt-2 w-fit h-11 px-6 text-[1rem] bg-primary hover:bg-primary/90 text-primary-foreground font-semibold cursor-pointer rounded-[0px]"
+                className="btn-caps mt-2 w-fit h-11 px-6 text-[1rem] bg-primary hover:bg-primary/90 text-primary-foreground font-semibold cursor-pointer rounded-none"
               >
                 <Link href="/#donate" onClick={handleInPage("donate")}>
                   Donate Now
