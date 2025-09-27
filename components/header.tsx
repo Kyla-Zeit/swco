@@ -19,7 +19,7 @@ export function Header() {
   const navClass = (href: string) =>
     pathname === href ? `${baseNav} opacity-100 text-foreground` : baseNav;
 
-  // Smooth scroll to a section by id (home page only)
+  // smooth-scroll helper (home page only)
   const scrollToId = useCallback((id: string) => {
     const el = document.getElementById(id);
     if (el) {
@@ -28,16 +28,15 @@ export function Header() {
     }
   }, []);
 
-  // Intercept in-page links only when we're already on "/"
-  const handleInPage = (id: string) => (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (pathname === "/") {
-      e.preventDefault();
-      scrollToId(id);
-      setIsMenuOpen(false);
-    }
-  };
+  const handleInPage =
+    (id: string) => (e: React.MouseEvent<HTMLAnchorElement>) => {
+      if (pathname === "/") {
+        e.preventDefault();
+        scrollToId(id);
+        setIsMenuOpen(false);
+      }
+    };
 
-  // If already on home, clicking the logo just scrolls to top smoothly
   const handleLogoClick = useCallback(
     (e: React.MouseEvent<HTMLAnchorElement>) => {
       if (pathname === "/") {
@@ -57,7 +56,7 @@ export function Header() {
           <Link
             href="/"
             onClick={handleLogoClick}
-            className="flex items-center gap-3 rounded-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
+            className="flex items-center gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
           >
             <Image
               src={logo}
@@ -74,7 +73,7 @@ export function Header() {
 
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-12 lg:gap-16 xl:gap-20">
-            {/* About + submenu (square panel & items) */}
+            {/* About + dropdown (forced square) */}
             <div className="relative group">
               <Link
                 href="/#about"
@@ -85,10 +84,10 @@ export function Header() {
                 <ChevronDown className="w-4 h-4 opacity-60 group-hover:opacity-100 transition" />
               </Link>
 
-              {/* Dropdown (now squared) */}
+              {/* Dropdown panel */}
               <div
                 className="
-                  pointer-events-none absolute left-0 mt-2 w-56 rounded-none border border-border
+                  pointer-events-none absolute left-0 mt-2 w-56 rounded-[0px] border border-border
                   bg-background shadow-lg opacity-0 translate-y-1 transition
                   group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto
                   group-focus-within:opacity-100 group-focus-within:translate-y-0 group-focus-within:pointer-events-auto
@@ -96,7 +95,7 @@ export function Header() {
               >
                 <Link
                   href="/our-team"
-                  className="flex items-center gap-3 px-4 py-2 text-sm hover:bg-muted/60 rounded-none"
+                  className="flex items-center gap-3 px-4 py-2 text-sm hover:bg-muted/60 rounded-[0px]"
                 >
                   <Users className="w-4 h-4 opacity-70" />
                   <span>Meet The Team</span>
@@ -104,7 +103,7 @@ export function Header() {
                 <Link
                   href="/#community-voices"
                   onClick={handleInPage("community-voices")}
-                  className="flex items-center gap-3 px-4 py-2 text-sm hover:bg-muted/60 rounded-none"
+                  className="flex items-center gap-3 px-4 py-2 text-sm hover:bg-muted/60 rounded-[0px]"
                 >
                   <Quote className="w-4 h-4 opacity-70" />
                   <span>Testimonials</span>
@@ -114,6 +113,11 @@ export function Header() {
 
             <Link href="/#projects" onClick={handleInPage("projects")} className={baseNav}>
               Projects
+            </Link>
+
+            {/* NEW: Events in nav, links to Upcoming Events */}
+            <Link href="/#events" onClick={handleInPage("events")} className={baseNav}>
+              Events
             </Link>
 
             <Link href="/#contact" onClick={handleInPage("contact")} className={baseNav}>
@@ -126,7 +130,7 @@ export function Header() {
             <Button
               asChild
               size="sm"
-              className="btn-caps cursor-pointer h-11 px-6 text-[1rem] bg-primary hover:bg-primary/90 text-primary-foreground font-semibold rounded-none"
+              className="btn-caps cursor-pointer h-11 px-6 text-[1rem] bg-primary hover:bg-primary/90 text-primary-foreground font-semibold rounded-[0px]"
             >
               <Link href="/#donate" onClick={handleInPage("donate")}>
                 Donate Now
@@ -136,7 +140,7 @@ export function Header() {
 
           {/* Mobile toggle */}
           <button
-            className="md:hidden p-2 rounded-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
+            className="md:hidden p-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
             onClick={() => setIsMenuOpen((v) => !v)}
             aria-label="Toggle menu"
             aria-expanded={isMenuOpen}
@@ -152,7 +156,6 @@ export function Header() {
               <Link href="/#about" onClick={handleInPage("about")} className={baseNav}>
                 About
               </Link>
-              {/* Sub-items under About (mobile) */}
               <Link
                 href="/our-team"
                 className="pl-4 text-[1.05rem] opacity-80 hover:opacity-100 hover:text-foreground transition-colors"
@@ -171,6 +174,10 @@ export function Header() {
               <Link href="/#projects" onClick={handleInPage("projects")} className={baseNav}>
                 Projects
               </Link>
+              {/* NEW: Events (mobile) */}
+              <Link href="/#events" onClick={handleInPage("events")} className={baseNav}>
+                Events
+              </Link>
 
               <Link href="/#contact" onClick={handleInPage("contact")} className={baseNav}>
                 Contact
@@ -179,7 +186,7 @@ export function Header() {
               <Button
                 asChild
                 size="sm"
-                className="btn-caps mt-2 w-fit h-11 px-6 text-[1rem] bg-primary hover:bg-primary/90 text-primary-foreground font-semibold cursor-pointer rounded-none"
+                className="btn-caps mt-2 w-fit h-11 px-6 text-[1rem] bg-primary hover:bg-primary/90 text-primary-foreground font-semibold cursor-pointer rounded-[0px]"
               >
                 <Link href="/#donate" onClick={handleInPage("donate")}>
                   Donate Now
