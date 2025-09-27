@@ -3,8 +3,6 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Mail, Linkedin, Globe } from "lucide-react";
-// If you already have this helper (used in your header), keep this import:
-// It should return the correct href with base path (e.g. "/swco")
 
 // ---------- page meta ----------
 export const metadata: Metadata = {
@@ -24,7 +22,7 @@ type TeamMember = {
   website?: string;
 };
 
-// ---------- data ----------
+// ---------- data (edit freely) ----------
 const leadership: TeamMember[] = [
   {
     name: "Ayan Dualeh",
@@ -70,13 +68,38 @@ const leadership: TeamMember[] = [
 ];
 
 // ---------- components ----------
+function SocialIcon({
+  label,
+  href,
+  children,
+}: {
+  label: string;
+  href: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <a
+      href={href}
+      target={href.startsWith("http") ? "_blank" : undefined}
+      rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+      aria-label={label}
+      className="inline-flex h-9 w-9 items-center justify-center border border-border text-foreground/80 hover:text-primary hover:border-primary/60 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 rounded-none"
+    >
+      {children}
+    </a>
+  );
+}
+
 function TeamCard({ m }: { m: TeamMember }) {
   return (
     <article
-      className="group overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition
-                 hover:-translate-y-1 hover:shadow-lg"
+      className="group overflow-hidden border border-border bg-card shadow-sm transition hover:-translate-y-1 hover:shadow-lg rounded-none"
     >
-      <div className="relative h-56 w-full md:h-60">
+      {/* Top accent */}
+      <div className="h-[3px] w-full bg-gradient-to-r from-primary via-emerald-400 to-primary" />
+
+      {/* Image (consistent aspect for a neat grid) */}
+      <div className="relative aspect-[4/3] w-full bg-muted">
         <Image
           src={m.image ?? "/team/placeholder.jpg"}
           alt={m.name}
@@ -85,55 +108,44 @@ function TeamCard({ m }: { m: TeamMember }) {
           className="object-cover"
           priority={false}
         />
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-primary/80 via-emerald-400/60 to-primary/80" />
       </div>
 
+      {/* Content */}
       <div className="p-5">
-        <h3 className="text-lg font-semibold leading-tight">{m.name}</h3>
-        <p className="text-sm text-muted-foreground">{m.role}</p>
-        {m.bio && <p className="mt-3 text-sm text-muted-foreground">{m.bio}</p>}
+        <div className="mb-2 flex items-start justify-between gap-3">
+          <h3 className="text-lg font-semibold leading-tight">{m.name}</h3>
+        </div>
 
+        {/* Role pill (square) */}
+        <div className="mb-3">
+          <span className="inline-block border border-border px-2 py-1 text-xs font-medium text-muted-foreground tracking-wide uppercase rounded-none">
+            {m.role}
+          </span>
+        </div>
+
+        {m.bio && (
+          <p className="text-sm text-muted-foreground">
+            {m.bio}
+          </p>
+        )}
+
+        {/* socials */}
         {(m.email || m.linkedin || m.website) && (
-          <div className="mt-4 flex items-center gap-3">
+          <div className="mt-4 flex items-center gap-2">
             {m.email && (
-              <a
-                href={`mailto:${m.email}`}
-                className="inline-flex h-9 w-9 items-center justify-center rounded-full
-                           border border-border text-foreground/80 hover:text-primary
-                           hover:border-primary/50 transition focus-visible:outline-none
-                           focus-visible:ring-2 focus-visible:ring-primary/50"
-                aria-label={`Email ${m.name}`}
-              >
+              <SocialIcon label={`Email ${m.name}`} href={`mailto:${m.email}`}>
                 <Mail className="h-4 w-4" />
-              </a>
+              </SocialIcon>
             )}
             {m.linkedin && (
-              <a
-                href={m.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex h-9 w-9 items-center justify-center rounded-full
-                           border border-border text-foreground/80 hover:text-primary
-                           hover:border-primary/50 transition focus-visible:outline-none
-                           focus-visible:ring-2 focus-visible:ring-primary/50"
-                aria-label={`LinkedIn — ${m.name}`}
-              >
+              <SocialIcon label={`LinkedIn — ${m.name}`} href={m.linkedin}>
                 <Linkedin className="h-4 w-4" />
-              </a>
+              </SocialIcon>
             )}
             {m.website && (
-              <a
-                href={m.website}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex h-9 w-9 items-center justify-center rounded-full
-                           border border-border text-foreground/80 hover:text-primary
-                           hover:border-primary/50 transition focus-visible:outline-none
-                           focus-visible:ring-2 focus-visible:ring-primary/50"
-                aria-label={`Website — ${m.name}`}
-              >
+              <SocialIcon label={`Website — ${m.name}`} href={m.website}>
                 <Globe className="h-4 w-4" />
-              </a>
+              </SocialIcon>
             )}
           </div>
         )}
@@ -187,42 +199,35 @@ export default function TeamPage() {
         </p>
       </div>
 
-      {/* People */}
+      {/* Leadership */}
       <Section people={leadership} />
 
-{/* CTA */}
-<div className="mt-16 border border-border bg-card/60 p-6 text-center">
-  <h3 className="text-xl font-semibold">Want to support the mission?</h3>
-  <p className="mt-2 text-muted-foreground">
-    We collaborate with engineers, health practitioners, educators, and
-    community organizers.
-  </p>
-  <div className="mt-4 flex items-center justify-center gap-3">
-    {/* Contact on the home page */}
-    <Link
-      href="/#contact"
-      className="btn-caps inline-flex items-center bg-primary px-5 py-2.5
-                 text-primary-foreground font-semibold tracking-wide
-                 hover:bg-primary/90 focus-visible:outline-none
-                 focus-visible:ring-2 focus-visible:ring-primary/50
-                 rounded-none"
-    >
-      Get in touch
-    </Link>
-
-    {/* Donate section on the home page */}
-    <Link
-      href="/#donate"
-      className="btn-caps inline-flex items-center border border-primary/30 px-5 py-2.5
-                 text-foreground font-semibold tracking-wide hover:border-primary/60
-                 focus-visible:outline-none focus-visible:ring-2
-                 focus-visible:ring-primary/50 rounded-none"
-    >
-      Donate
-    </Link>
-  </div>
-</div>
-
+      {/* CTA */}
+      <div className="mt-16 border border-border bg-card/60 p-6 text-center rounded-none">
+        <h3 className="text-xl font-semibold">Want to support the mission?</h3>
+        <p className="mt-2 text-muted-foreground">
+          We collaborate with engineers, health practitioners, educators, and
+          community organizers.
+        </p>
+        <div className="mt-4 flex items-center justify-center gap-3">
+          <Link
+            href="/#contact"
+            className="btn-caps inline-flex items-center bg-primary px-5 py-2.5 text-primary-foreground
+                       font-semibold tracking-wide hover:bg-primary/90 focus-visible:outline-none
+                       focus-visible:ring-2 focus-visible:ring-primary/50 rounded-none"
+          >
+            Get in touch
+          </Link>
+          <Link
+            href="/#donate"
+            className="btn-caps inline-flex items-center border border-primary/40 px-5 py-2.5
+                       text-foreground font-semibold tracking-wide hover:border-primary/70
+                       focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 rounded-none"
+          >
+            Donate
+          </Link>
+        </div>
+      </div>
     </div>
   );
 }
