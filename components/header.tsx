@@ -140,14 +140,6 @@ const handleLogoClick = useCallback(
               Projects
             </Link>
 
-             <Link
-              href="/#upcomingevents"
-              onClick={handleInPage("projects")}
-              className={baseNav}
-            >
-              Upcoming Events
-            </Link>
-
             <Link
               href="/#contact"
               onClick={handleInPage("contact")}
